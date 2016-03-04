@@ -10,16 +10,20 @@
                 <div class="panel-body">
                     <table border="1" style="width:100%">
                         <tr>
-                        <th>ID</th>
-                        <th>Name</th> 
+                        <th>Title</th>
+                        <th>Comment</th> 
+                        <th>Posted by</th> 
                         </tr>
                         <?php
-                        $query = App\Post::select('id','name');
-                            foreach($query as $user) {
+                        //$query = App\Post::select('id','name');
+                        $query = App\Post::get();
+                            foreach($query as $post) {
                                 echo "<tr> <td>";
-                                echo $user->id;
+                                echo $post->title;
                                 echo "</td><td>";
-                                echo $user["name"];
+                                echo $post->comment;
+                                echo"</td> <td>";
+                                echo $post->user_id;
                                 echo"</td> </tr>";
                             }
                         ?>

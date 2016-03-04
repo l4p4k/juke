@@ -13,10 +13,11 @@ class Post extends Migration
     public function up()
     {
         Schema::create('post', function (Blueprint $table) {
-        $table->increments('id');
+            //if doesnt work take out ->unique()
+        $table->increments('id')->unique();
+        $table->int('user_id')
         $table->string('title', 60);
         $table->string('comment', 60);
-        $table->string('email')->unique();
         $table->timestamps();
         });
     }

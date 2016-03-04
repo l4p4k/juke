@@ -23,9 +23,9 @@ class create_table_seeds extends Seeder
 
         foreach (range(1,10) as $index) {
             DB::table('post')->insert([
+                'user_id' => $faker->numberBetween(1,20);
                 'title' => $faker->word,
-                'comment' => $faker->paragraph,
-                'email' => $faker->email
+                'comment' => $faker->paragraph
             ]);
         }
     }

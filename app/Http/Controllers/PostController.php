@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 //use App\Http\Controllers\Controller;
 
-class HomeController extends Controller
+class PostController extends Controller
 {
 	    /**
      * Create a new controller instance.
@@ -16,7 +16,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth');
+        $this->middleware('auth');
     }
 
      /**

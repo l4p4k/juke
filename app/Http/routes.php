@@ -25,10 +25,11 @@
 Route::group(['middleware' => 'web'], function () {
 
 	// Route::get('/', function () {
+ //        HomeController->index();
 	//     return view('welcome');
 	// });
     Route::auth();
-    Route::get('/', 'HomeController@index');
+    Route::get('/', 'PostController@index');
     Route::get('post/{id}', function($id){
     	$post = App\Post::find($id);
     	echo $post->title;
@@ -37,4 +38,8 @@ Route::group(['middleware' => 'web'], function () {
     });
     Route::get('/profile', 'ProfileController@profile');
     Route::get('/create', 'CreateController@create');
+    Route::post('/newpost', [
+        'uses' => 'CreateController@postCreate',
+        'as' => 'post.create'
+    ]);
 });
