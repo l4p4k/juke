@@ -8,7 +8,6 @@
                 <div class="panel-heading">Create a New Post</div>
 
                 <div class="panel-body">
-                    Here is a form to create a new post
 
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('post.create') }}">
                         {!! csrf_field() !!}
@@ -50,6 +49,8 @@
                             </div>
                         </div>
                     </form>
+
+                    <?php echo $data; ?>
                 </div>
             </div>
         </div>

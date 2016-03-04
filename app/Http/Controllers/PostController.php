@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Post as Post;
 use App\Http\Requests;
 //use App\Http\Controllers\Controller;
 
@@ -26,7 +26,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        $post = new Post();
+        $data = $post->showPosts();
+        return view('welcome')->withdata($data);
     }
 
 }

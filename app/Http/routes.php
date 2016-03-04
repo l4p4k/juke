@@ -29,7 +29,10 @@ Route::group(['middleware' => 'web'], function () {
 	//     return view('welcome');
 	// });
     Route::auth();
-    Route::get('/', 'PostController@index');
+    Route::get('/', [
+        'uses' => 'PostController@index',
+        'as' => 'home'
+    ]);
     Route::get('post/{id}', function($id){
     	$post = App\Post::find($id);
     	echo $post->title;
