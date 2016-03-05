@@ -17,7 +17,7 @@ class Post extends Migration
         $table->increments('id')->unique();
         $table->int('user_id')
         $table->string('title', 60);
-        $table->string('comment', 60);
+        $table->string('comment', 255);
         $table->timestamps();
         });
     }
