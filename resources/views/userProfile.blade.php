@@ -5,12 +5,11 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Welcome <b>{{$data->name}}!</div>
+                <div class="panel-heading">@if($data->admin)<i class="fa fa-check"></i> @else  @endif <b>{{$data->name}}</b>'s profile</div>
 
                 <div class="panel-body">
-                    <p><b>Admin rank: </b> @if($data->admin)True @else False @endif</p>
-                    <p><b>User ID: </b> {{$data->id}}</p>
-                    <p><b>Email address: </b> {{$data->email}}</p>
+                    
+                    <p><b>Contact email: </b> <a href="mailto:{{$data->email}}">{{$data->email}} </a> </p>
                 </div>
             </div>
         </div>

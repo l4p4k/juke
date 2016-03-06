@@ -9,14 +9,13 @@
 
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table" style="width:100%">
                             <thead>
                                 <tr>
-                                <th>Title</th> 
-                                <th>Comment</th> 
-                                <th>Posted by</th>
+                                <th class="col-md-6">Title</th> 
+                                <th class="col-md-3 text-right">Posted by</th>
                                 @if(Auth::user()->admin)
-                                <th>Delete</th>
+                                <th class="col-md-1">Delete</th>
                                 @endif 
                                 </tr>
                             </thead> 
@@ -24,13 +23,10 @@
                                 @foreach($data as $key => $post)
                                     <tr> 
                                         <td>
-                                            <a href=/post/{{$post->id}}>{{$post->title}}</a>
+                                            <b><a href=/post/{{$post->id}}>{{$post->title}}</a><b>
                                         </td>
-                                        <td>
-                                            {{wordwrap($post->comment,30,"\n")}}
-                                        </td> 
-                                        <td>
-                                        <br>{{$post->name}}
+                                        <td class="text-right">
+                                            <a href=/profile/{{$post->user_id}}>{{$post->name}}</a>
                                         </td> 
                                         @if(Auth::user()->admin)
                                         <td>

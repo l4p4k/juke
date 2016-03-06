@@ -40,7 +40,17 @@ Route::group(['middleware' => 'web'], function () {
         function ($id = '1') {
     }]);
 
-    Route::get('/profile', 'ProfileController@profile');
+
+    Route::get('/profile', [
+        'uses' => 'ProfileController@profile',
+        'as' => 'profile'
+    ]);
+
+    Route::get('/profile/{id}', [
+        'uses' => 'ProfileController@userProfile',
+        'as' => 'userProfile',
+        function ($id = null) {
+    }]);
 
     Route::get('/create', [
         'uses' => 'CreateController@create',

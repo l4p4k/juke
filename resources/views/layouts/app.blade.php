@@ -47,7 +47,7 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/') }}">Home</a></li>
+                    <li><a href="{{ url('/') }}"><i class="fa fa-home"></i> Home</a></li>
                     <li><a href="{{ url('/profile') }}">Profile</a></li>
                     <li><a href="{{ url('/create') }}">Create Post</a></li>
                 </ul>

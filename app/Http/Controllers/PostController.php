@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post as Post;
-use App\User as User;
 use App\Http\Requests;
 use Auth;
 //use App\Http\Controllers\Controller;
@@ -28,10 +27,7 @@ class PostController extends Controller
      */
     public function index()
     {   
-        $user = new User();
         $post = new Post();
-        //echo Auth::user()->admin;
-        // $data[0] = $user->getLoggedUser(Auth::user()->admin);
         $data = $post->showPosts();
         return view('welcome')->withdata($data);
     }
