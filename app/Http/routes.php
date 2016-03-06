@@ -33,12 +33,13 @@ Route::group(['middleware' => 'web'], function () {
         'uses' => 'PostController@index',
         'as' => 'home'
     ]);
-    Route::get('post/{id}', function($id){
-    	$post = App\Post::find($id);
-    	echo $post->title;
-    	echo "<br>";
-    	echo $post->comment;
-    });
+
+    Route::get('/post/{id}', [
+        'uses' => 'PostController@viewPost',
+        'as' => 'post',
+        function ($id = '1') {
+    }]);
+
     Route::get('/profile', 'ProfileController@profile');
     Route::get('/create', 'CreateController@create');
     Route::post('/newpost', [

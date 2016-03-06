@@ -29,7 +29,7 @@
     <nav class="navbar navbar-default">
         <div style="text-align: center;">
             <a href="{{ url('/') }}">
-                <img src="myfiles/logo.png" alt="Homepage" width="547" height="200">
+                <img src="/myfiles/logo.png" alt="Homepage" width="547" height="200">
             </a>
         </div>
         <div class="container">

@@ -14,27 +14,33 @@
                                 <tr>
                                 <th>Title</th> 
                                 <th>Comment</th> 
-                                <th>Posted by</th> 
+                                <th>Posted by</th>
+                                @if(Auth::user()->admin)
+                                <th>Delete</th>
+                                @endif 
                                 </tr>
-                            </thead>
+                            </thead> 
                             <tbody>
-                                <?php
-                                    foreach($data as $key => $post) {
-                                        echo "<tr> <td>";
-                                        echo $post->title;
-                                        echo "</td> <td>";
-                                        $str = $post->comment;
-                                        echo wordwrap($str,50,"<br>\n");
-                                        echo"</td> <td><br>";
-                                        echo $post->name;
-                                        echo "</td> </tr>";
-                                    }
-                                ?>
+                                @foreach($data as $key => $post)
+                                    <tr> 
+                                        <td>
+                                            <a href=/post/{{$post->id}}>{{$post->title}}</a>
+                                        </td>
+                                        <td>
+                                            {{wordwrap($post->comment,30,"\n")}}
+                                        </td> 
+                                        <td>
+                                        <br>{{$post->name}}
+                                        </td> 
+                                        @if(Auth::user()->admin)
+                                        <td>
+                                            <button type='button' class='btn'>Delete</button>
+                                        </td> 
+                                        @endif 
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
-
-                        <?php
-                        ?>
                     </div>
                 </div>
             </div>

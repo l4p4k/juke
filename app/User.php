@@ -27,4 +27,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getLoggedUser($id){
+        $query = DB::table('users')
+            ->where('users.id', '=', $id)
+            ->first();
+        return $query;
+    }
 }

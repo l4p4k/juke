@@ -14,11 +14,11 @@ class Post extends Migration
     {
         Schema::create('post', function (Blueprint $table) {
             //if doesnt work take out ->unique()
-        $table->increments('id')->unique();
-        $table->int('user_id')
-        $table->string('title', 60);
-        $table->string('comment', 255);
-        $table->timestamps();
+            $table->increments('id')->unique();
+            $table->integer('user_id');
+            $table->string('title', 60);
+            $table->string('comment', 255);
+            $table->timestamps();
         });
     }
 

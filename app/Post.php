@@ -21,4 +21,13 @@ class Post extends Model
 			->get();
     	return $query;
     }
+
+    public function showPost($id){
+        $query = DB::table('users')
+            ->join('post', 'users.id', '=', 'post.user_id')
+            ->select('users.id', 'users.name', 'post.*')
+            ->where('post.id', '=', $id)
+            ->first();
+        return $query;
+    }
 }
