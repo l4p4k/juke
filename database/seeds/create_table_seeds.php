@@ -12,6 +12,13 @@ class create_table_seeds extends Seeder
      */
     public function run()
     {
+        DB::table('users')->insert([
+            'name' => "Ebrahim Ravat",
+            'email' => "eby_146@hotmail.co.uk",
+            'password' => bcrypt('poop123'),
+            'admin' => "1"
+        ]);
+
     	$faker = Faker::create();
     	foreach (range(1,20) as $index) {
 	        DB::table('users')->insert([

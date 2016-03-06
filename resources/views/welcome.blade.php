@@ -34,7 +34,7 @@
                                         </td> 
                                         @if(Auth::user()->admin)
                                         <td>
-                                            <button type='button' class='btn'>Delete</button>
+                                            <button type='button' class='btn-danger'>Delete</button>
                                         </td> 
                                         @endif 
                                     </tr>

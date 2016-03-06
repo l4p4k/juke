@@ -22,14 +22,11 @@ class CreateController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        return view('create')->withdata("");
+        $message = "";
+        return view('create')->withdata($message);
     }
 
     public function postCreate(Request $request)
@@ -43,7 +40,8 @@ class CreateController extends Controller
         DB::table('post')->insert([
             ['id' => "", 'user_id' => $user_id, 'title' => $title, 'comment' => $comment]
         ]);
-        return redirect()->route('home');
-        //return view('create')->withdata("Post successfully created");
+        $message = "<div class='alert alert-success'> <strong>Success!</strong> You created a post </div>";
+        //return redirect()->route('home');
+        return view('create')->withdata("$message");
     }
 }

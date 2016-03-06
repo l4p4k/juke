@@ -9,6 +9,8 @@
 
                 <div class="panel-body">
 
+                        <?php echo $data;?>
+                    
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('post.create') }}">
                         {!! csrf_field() !!}
 
@@ -49,8 +51,6 @@
                             </div>
                         </div>
                     </form>
-
-                    <?php echo $data; ?>
                 </div>
             </div>
         </div>

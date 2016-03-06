@@ -41,7 +41,12 @@ Route::group(['middleware' => 'web'], function () {
     }]);
 
     Route::get('/profile', 'ProfileController@profile');
-    Route::get('/create', 'CreateController@create');
+
+    Route::get('/create', [
+        'uses' => 'CreateController@create',
+        'as' => 'create'
+    ]);
+
     Route::post('/newpost', [
         'uses' => 'CreateController@postCreate',
         'as' => 'post.create'
