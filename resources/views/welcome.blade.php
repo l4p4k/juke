@@ -8,6 +8,7 @@
                 <div class="panel-heading">Welcome</div>
 
                 <div class="panel-body">
+                    @if($data[1] != null)
                     <div class="table-responsive">
                         <table class="table" style="width:100%">
                             <thead>
@@ -29,7 +30,7 @@
                                         </td>
                                         <td class="text-right">
                                             <a href=/profile/{{$post->user_id}}>{{$post->name}}</a>
-                                        </td> 
+                                        </td>
                                         @if (!Auth::guest())
                                         @if(Auth::user()->admin)
                                         <td>
@@ -42,6 +43,9 @@
                             </tbody>
                         </table>
                     </div>
+                    @else
+                    This user has no posts
+                    @endif
                 </div>
             </div>
         </div>

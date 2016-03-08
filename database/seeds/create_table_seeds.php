@@ -13,7 +13,9 @@ class create_table_seeds extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' => "Ebrahim Ravat",
+            'fname' => "Ebrahim",
+            'sname' => "Ravat",
+            'phone' => "07123456789",
             'email' => "eby_146@hotmail.co.uk",
             'password' => bcrypt('poop123'),
             'admin' => "1"
@@ -21,13 +23,22 @@ class create_table_seeds extends Seeder
 
     	$faker = Faker::create();
     	foreach (range(1,20) as $index) {
+            $name = $faker->firstName();
 	        DB::table('users')->insert([
-	            'name' => $faker->name,
-	            'email' => $faker->email,
+	            'fname' => $name,
+                'sname' => $faker->lastname(),
+                'phone' => "07".$faker->numberBetween(100000000, 999999999),
+	            'email' => $name."@".$faker->domainName,
 	            'password' => bcrypt('poop123'),
-                'admin' => $faker->numberBetween(0,1)
+                'admin' => "0"
 	        ]);
         }
+
+        DB::table('post')->insert([
+            'user_id' => "1",
+            'title' => "A paragraph from wiki",
+            'comment' => "A paragraph (from the Ancient Greek παράγραφος paragraphos, \"to write beside\" or \"written beside\") is a self-contained unit of a discourse in writing dealing with a particular point or idea. A paragraph consists of one or more sentences."
+        ]);
 
         foreach (range(1,20) as $index) {
             DB::table('post')->insert([
