@@ -30,4 +30,14 @@ class Post extends Model
             ->first();
         return $query;
     }
+
+    public function getUserPosts($id){
+        $query = DB::table('users')
+            ->join('post', 'users.id', '=', 'post.user_id')
+            ->select('users.id', 'users.name', 'post.*')
+            ->orderBy('post.id')
+            ->where('users.id', '=', $id)
+            ->get();
+        return $query;
+    }
 }
