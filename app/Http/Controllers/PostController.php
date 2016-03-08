@@ -17,7 +17,7 @@ class PostController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['index','viewPost']]);
     }
 
      /**
@@ -25,10 +25,12 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {   
+    public function index(){   
         $post = new Post();
         $data = $post->showPosts();
+        // foreach($data as $key => $post){
+        //     echo $post->title."<br>";
+        // }
         return view('welcome')->withdata($data);
     }
 

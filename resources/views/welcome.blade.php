@@ -14,8 +14,10 @@
                                 <tr>
                                 <th class="col-md-6">Title</th> 
                                 <th class="col-md-3 text-right">Posted by</th>
+                                @if (!Auth::guest())
                                 @if(Auth::user()->admin)
                                 <th class="col-md-1">Delete</th>
+                                @endif 
                                 @endif 
                                 </tr>
                             </thead> 
@@ -28,10 +30,12 @@
                                         <td class="text-right">
                                             <a href=/profile/{{$post->user_id}}>{{$post->name}}</a>
                                         </td> 
+                                        @if (!Auth::guest())
                                         @if(Auth::user()->admin)
                                         <td>
                                             <button type='button' class='btn-danger'>Delete</button>
                                         </td> 
+                                        @endif 
                                         @endif 
                                     </tr>
                                 @endforeach

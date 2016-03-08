@@ -29,28 +29,31 @@ Route::group(['middleware' => 'web'], function () {
 	//     return view('welcome');
 	// });
     Route::auth();
-    Route::get('/', [
-        'uses' => 'PostController@index',
-        'as' => 'home'
-    ]);
 
-    Route::get('/post/{id}', [
-        'uses' => 'PostController@viewPost',
-        'as' => 'post',
-        function ($id = '1') {
-    }]);
+    //Route::group(['middleware' => 'guest'], function () {
+        Route::get('/', [
+            'uses' => 'PostController@index',
+            'as' => 'home'
+        ]);
 
+        Route::get('/post/{id}', [
+            'uses' => 'PostController@viewPost',
+            'as' => 'post',
+            function ($id = '1') {
+        }]);
+
+        Route::get('/profile/{id}', [
+            'uses' => 'ProfileController@userProfile',
+            'as' => 'userProfile',
+            function ($id = null) {
+        }]);
+   //});
 
     Route::get('/profile', [
         'uses' => 'ProfileController@profile',
         'as' => 'profile'
     ]);
 
-    Route::get('/profile/{id}', [
-        'uses' => 'ProfileController@userProfile',
-        'as' => 'userProfile',
-        function ($id = null) {
-    }]);
 
     Route::get('/create', [
         'uses' => 'CreateController@create',
@@ -62,3 +65,4 @@ Route::group(['middleware' => 'web'], function () {
         'as' => 'post.create'
     ]);
 });
+
