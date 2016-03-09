@@ -9,7 +9,7 @@
 
                 <div class="panel-body">
 
-                        <?php echo $data;?>
+                    {{$data}}
                     
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('post.create') }}">
                         {!! csrf_field() !!}

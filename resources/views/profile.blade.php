@@ -5,14 +5,91 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Welcome <b>{{$data[0]->fname}} {{$data[0]->sname}}!</div>
+                <div class="panel-heading">Welcome <b>{{$data[0]->fname}} {{$data[0]->sname}}!</b></div>
 
                 <div class="panel-body">
-                    <p><b>Admin rank: </b> @if($data[0]->admin)True @else False @endif</p>
-                    <p><b>User ID: </b> {{$data[0]->id}}</p>
-                    <p><b>Email address: </b> {{$data[0]->email}}</p>
-                    <p><b>Phone number: </b> @if($data[0]->phone != null) {{$data[0]->phone}} @else --- @endif</p>
-                    <p><b>Postcode: </b> @if($data[0]->postcode != null) {{$data[0]->postcode}} @else --- @endif</p>
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('post.create') }}">
+                        {!! csrf_field() !!}
+
+                        <p><b>Admin rank: </b> @if($data[0]->admin)True @else False @endif</p>
+                        <p><b>User ID: </b> {{$data[0]->id}}</p>
+
+                        <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                            <label class="col-md-2 control-label">Phone number</label>
+                            <div class="col-md-4">
+                                <input type="phone" class="form-control" name="phone" value=
+                                @if(old('phone')!=null) 
+                                    {{ old('phone') }}
+                                @else 
+                                    @if($data[0]->phone != null)
+                                        {{$data[0]->phone}}
+                                    @else 
+                                        ''
+                                    @endif
+                                @endif>
+
+                                @if ($errors->has('phone'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('phone') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label class="col-md-2 control-label">Email address</label>
+                            <div class="col-md-4">
+                                <input type="email" class="form-control" name="email" value=
+                                @if(old('email')!=null) 
+                                    {{ old('email') }}
+                                @else 
+                                    @if($data[0]->email != null)
+                                        {{$data[0]->email}}
+                                    @else 
+                                        ''
+                                    @endif
+                                @endif>
+
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('postcode') ? ' has-error' : '' }}">
+                            <label class="col-md-2 control-label">Postcode</label>
+                            <div class="col-md-4">
+                                <input type="postcode" class="form-control" name="postcode" value=
+                                @if(old('postcode')!=null) 
+                                    {{ old('postcode') }}
+                                @else 
+                                    @if($data[0]->postcode != null)
+                                        {{$data[0]->postcode}}
+                                    @else 
+                                        ''
+                                    @endif
+                                @endif>
+
+                                @if ($errors->has('postcode'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('postcode') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <p><b>Postcode: </b> @if($data[0]->postcode != null) {{$data[0]->postcode}} @else --- @endif</p>
+                    <div class="form-group">
+                            <div class="col-md-6 col-md-offset-0">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-cog"></i> Settings</a>
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
                 </div>
             </div>
 
@@ -38,7 +115,8 @@
                                         </td>
                                         @if (!Auth::guest())
                                         <td>
-                                            <a href=/delete/{{$post->id}} class='btn-danger'>Delete</a>
+                                            <a href=/delete/{{$post->id}} class='btn btn-danger'>
+                                            <i class="fa fa-trash-o fa-lg"></i> Delete</a>
                                         </td> 
                                         @endif 
                                     </tr>

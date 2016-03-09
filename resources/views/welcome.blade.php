@@ -34,7 +34,8 @@
                                         @if (!Auth::guest())
                                         @if(Auth::user()->admin)
                                         <td>
-                                            <a href=/delete/{{$post->id}} class='btn-danger'>Delete</a>
+                                            <a href=/delete/{{$post->id}} class='btn btn-danger'>
+                                            <i class="fa fa-trash-o fa-lg"></i> Delete</a>
                                         </td> 
                                         @endif 
                                         @endif 
