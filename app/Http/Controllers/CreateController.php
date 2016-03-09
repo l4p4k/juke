@@ -32,16 +32,18 @@ class CreateController extends Controller
     public function postCreate(Request $request)
     {
         //needs validation
-        $userID = 
         $user_id = Auth::user()->id;
         $title = $request['title'];
         $comment = $request['comment'];
 
-        DB::table('post')->insert([
-            ['id' => "", 'user_id' => $user_id, 'title' => $title, 'comment' => $comment]
-        ]);
-        $message = "<div class='alert alert-success'> <strong>Success!</strong> You created a post </div>";
-        //return redirect()->route('home');
+        $post = new Post();
+        $insert = $post->createPost($user_id, $title, $comment);
+        
+        if($insert == 1){
+            $message = "<div class='alert alert-success'> <strong>Success!</strong> You created a post </div>";
+        }else{
+            $message = "<div class='alert alert-danger'> <strong>Error!</strong> Your post was not created </div>";
+        }
         return view('create')->withdata("$message");
     }
 }

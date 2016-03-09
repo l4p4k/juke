@@ -16,8 +16,8 @@ class Post extends Model
     public function showPosts(){
     	$query = DB::table('users')
 			->join('post', 'users.id', '=', 'post.user_id')
-			->select('users.id', 'users.name', 'post.*')
-			->orderBy('post.id')
+			->select('users.id', 'users.fname', 'users.sname', 'post.*')
+			->orderBy('post.id', 'DESC')
 			->get();
     	return $query;
     }
@@ -25,7 +25,7 @@ class Post extends Model
     public function showPost($id){
         $query = DB::table('users')
             ->join('post', 'users.id', '=', 'post.user_id')
-            ->select('users.id', 'users.name', 'post.*')
+            ->select('users.id', 'users.fname', 'users.sname', 'post.*')
             ->where('post.id', '=', $id)
             ->first();
         return $query;
@@ -34,10 +34,24 @@ class Post extends Model
     public function getUserPosts($id){
         $query = DB::table('users')
             ->join('post', 'users.id', '=', 'post.user_id')
-            ->select('users.id', 'users.name', 'post.*')
-            ->orderBy('post.id')
+            ->select('users.id', 'users.fname', 'users.sname', 'post.*')
+            ->orderBy('post.id', 'DESC')
             ->where('users.id', '=', $id)
             ->get();
+        return $query;
+    }
+
+    public function createPost($user_id, $title, $comment){
+        $query = DB::table('post')->insert([
+            ['id' => "", 'user_id' => $user_id, 'title' => $title, 'comment' => $comment]
+        ]);
+
+        return $query;
+    }
+
+    public function deletePost($post_id){
+        $query = DB::table('post')->where('id', '=', $post_id)->delete();
+
         return $query;
     }
 }

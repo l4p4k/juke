@@ -29,12 +29,12 @@
                                             <b><a href=/post/{{$post->id}}>{{$post->title}}</a><b>
                                         </td>
                                         <td class="text-right">
-                                            <a href=/profile/{{$post->user_id}}>{{$post->name}}</a>
+                                            <a href=/profile/{{$post->user_id}}>{{$post->fname}} {{$post->sname}}</a>
                                         </td>
                                         @if (!Auth::guest())
                                         @if(Auth::user()->admin)
                                         <td>
-                                            <button type='button' class='btn-danger'>Delete</button>
+                                            <a href=/delete/{{$post->id}} class='btn-danger'>Delete</a>
                                         </td> 
                                         @endif 
                                         @endif 

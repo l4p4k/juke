@@ -38,7 +38,7 @@ Route::group(['middleware' => 'web'], function () {
 
         Route::get('/post/{id}', [
             'uses' => 'PostController@viewPost',
-            'as' => 'post',
+            'as' => 'post.view',
             function ($id = '1') {
         }]);
 
@@ -47,6 +47,7 @@ Route::group(['middleware' => 'web'], function () {
             'as' => 'userProfile',
             function ($id = null) {
         }]);
+
    //});
 
     Route::get('/profile', [
@@ -59,6 +60,12 @@ Route::group(['middleware' => 'web'], function () {
         'uses' => 'CreateController@create',
         'as' => 'create'
     ]);
+
+    Route::get('/delete/{id}', [
+            'uses' => 'PostController@deletePost',
+            'as' => 'post.delete',
+            function ($id = null) {
+    }]);
 
     Route::post('/newpost', [
         'uses' => 'CreateController@postCreate',

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Post as Post;
 use App\Http\Requests;
 use Auth;
+use Illuminate\Support\Facades\Redirect;
+use URL;
 //use App\Http\Controllers\Controller;
 
 class PostController extends Controller
@@ -34,11 +36,29 @@ class PostController extends Controller
         return view('welcome')->withdata($data);
     }
 
-    public function viewPost($id)
-    {
+    public function viewPost($id){
         $post = new Post();
         $data = $post->showPost($id);
         return view('post')->withdata($data);
+    }
+
+    public function deletePost($id){
+        $post = new Post();
+        $postDetails = $post->showPost($id);
+        if($postDetails != null){
+            if($postDetails->user_id == Auth::user()->id){
+                $post = new Post();
+                $post->deletePost($id);
+            }else{
+                $data = "This isn't your post to delete";
+                return view('error')->withdata($data);
+            }
+        }else{
+            $data = "No post to delete";
+            return view('error')->withdata($data);
+        }
+        //takes you to the previous page
+        return Redirect::to(URL::previous());
     }
 
 }

@@ -15,7 +15,7 @@ class create_table_seeds extends Seeder
         DB::table('users')->insert([
             'fname' => "Ebrahim",
             'sname' => "Ravat",
-            'phone' => "07123456789",
+            'phone' => "",
             'email' => "eby_146@hotmail.co.uk",
             'password' => bcrypt('poop123'),
             'admin' => "1"

@@ -5,15 +5,13 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Post Details</div>
+                <div class="panel-heading">Error</div>
 
                 <div class="panel-body">
-                    @if($data!=NULL)
-                        <h1>{{$data->title}}</h1>
-                        <p>{{$data->comment}}</p>
-                        <a href=/profile/{{$data->user_id}}>{{$data->fname}} {{$data->sname}}</a>
+                    @if($data != null)
+                        <h2>-- {{$data}} --</h2>
                     @else
-                        <h1> Error 9001 - IT'S OVAR 9000!!! </h1>
+                        <h2>Wooooooooo... leave now!</h2>
                     @endif
                 </div>
             </div>

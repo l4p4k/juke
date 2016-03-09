@@ -5,12 +5,13 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Welcome <b>{{$data[0]->name}}!</div>
+                <div class="panel-heading">Welcome <b>{{$data[0]->fname}} {{$data[0]->sname}}!</div>
 
                 <div class="panel-body">
                     <p><b>Admin rank: </b> @if($data[0]->admin)True @else False @endif</p>
                     <p><b>User ID: </b> {{$data[0]->id}}</p>
                     <p><b>Email address: </b> {{$data[0]->email}}</p>
+                    <p><b>Phone number: </b> @if($data[0]->phone != null) {{$data[0]->phone}} @else None @endif</p>
                 </div>
             </div>
 
@@ -39,7 +40,7 @@
                                         @if (!Auth::guest())
                                         @if(Auth::user()->admin)
                                         <td>
-                                            <button type='button' class='btn-danger'>Delete</button>
+                                            <a href=/delete/{{$post->id}} class='btn-danger'>Delete</a>
                                         </td> 
                                         @endif 
                                         @endif 

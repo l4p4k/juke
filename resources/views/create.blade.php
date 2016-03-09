@@ -47,7 +47,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-comment"></i> Submit
                                 </button>
-                                <input type="hidden" value ="{{ Session::token()}}" name="_token">
+                                <!-- <input type="hidden" value ="{{ Session::token()}}" name="_token"> -->
                             </div>
                         </div>
                     </form>
