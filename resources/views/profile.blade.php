@@ -11,7 +11,8 @@
                     <p><b>Admin rank: </b> @if($data[0]->admin)True @else False @endif</p>
                     <p><b>User ID: </b> {{$data[0]->id}}</p>
                     <p><b>Email address: </b> {{$data[0]->email}}</p>
-                    <p><b>Phone number: </b> @if($data[0]->phone != null) {{$data[0]->phone}} @else None @endif</p>
+                    <p><b>Phone number: </b> @if($data[0]->phone != null) {{$data[0]->phone}} @else --- @endif</p>
+                    <p><b>Postcode: </b> @if($data[0]->postcode != null) {{$data[0]->postcode}} @else --- @endif</p>
                 </div>
             </div>
 

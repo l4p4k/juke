@@ -9,6 +9,7 @@
 
                 <div class="panel-body">
                     <p><b>Contact email: </b> <a href="mailto:{{$data[0]->email}}">{{$data[0]->email}} </a> </p>
+                    <p><b>Postcode: </b> @if($data[0]->postcode != null) {{$data[0]->postcode}} @else --- @endif</p>
                 </div>
             </div>
             <div class="panel panel-default">
