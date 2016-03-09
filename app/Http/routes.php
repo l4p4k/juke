@@ -32,8 +32,7 @@ Route::group(['middleware' => 'web'], function () {
 
     //Route::group(['middleware' => 'guest'], function () {
         Route::get('/', [
-            'uses' => 'PostController@index',
-            'as' => 'home'
+            'uses' => 'PostController@index'
         ]);
 
         Route::get('/post/{id}', [

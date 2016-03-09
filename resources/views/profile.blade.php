@@ -25,9 +25,7 @@
                                 <tr>
                                 <th class="col-md-6">Title</th> 
                                 @if (!Auth::guest())
-                                @if(Auth::user()->admin)
                                 <th class="col-md-1">Delete</th>
-                                @endif 
                                 @endif 
                                 </tr>
                             </thead> 
@@ -38,11 +36,9 @@
                                             <b><a href=/post/{{$post->id}}>{{$post->title}}</a><b>
                                         </td>
                                         @if (!Auth::guest())
-                                        @if(Auth::user()->admin)
                                         <td>
                                             <a href=/delete/{{$post->id}} class='btn-danger'>Delete</a>
                                         </td> 
-                                        @endif 
                                         @endif 
                                     </tr>
                                 @endforeach
