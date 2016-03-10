@@ -23,7 +23,7 @@
                                 </tr>
                             </thead> 
                             <tbody>
-                                @foreach($data as $key => $post)
+                                @foreach($data as $post)
                                     <tr> 
                                         <td>
                                             <b><a href=/post/{{$post->id}}>{{$post->title}}</a><b>

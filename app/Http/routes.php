@@ -32,8 +32,13 @@ Route::group(['middleware' => 'web'], function () {
 
     //Route::group(['middleware' => 'guest'], function () {
         Route::get('/', [
-            'uses' => 'PostController@index'
+            'uses' => 'PostController@index',
+            'as'   => 'home'
         ]);
+
+        Route::get('/home', function(){
+            return redirect()->route('home');
+        });
 
         Route::get('/post/{id}', [
             'uses' => 'PostController@viewPost',
@@ -54,6 +59,10 @@ Route::group(['middleware' => 'web'], function () {
         'as' => 'profile'
     ]);
 
+    Route::get('/profile/change', [
+        'uses' => 'ProfileController@change',
+        'as' => 'profile.change'
+    ]);
 
     Route::get('/create', [
         'uses' => 'CreateController@create',
