@@ -8,7 +8,7 @@
                 <div class="panel-heading">Welcome <b>{{$data[0]->fname}} {{$data[0]->sname}}!</b></div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('profile.change') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('profile.edit') }}">
                         {!! csrf_field() !!}
 
                         <p><b>Admin rank: </b> @if($data[0]->admin)True @else False @endif</p>

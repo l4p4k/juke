@@ -21,7 +21,6 @@
                             <thead>
                                 <tr>
                                 <th class="col-md-6">Title</th> 
-                                <th class="col-md-3 text-right">Comment</th>
                                 </tr>
                             </thead> 
                             <tbody>
@@ -30,14 +29,6 @@
                                         <td>
                                             <b><a href=/post/{{$post->id}}>{{$post->title}}</a><b>
                                         </td>
-                                        <td class="text-right">
-                                            @if(substr($post->comment,0,strpos($post->comment, ' ', 40)))
-                                                {{substr($post->comment,0,strpos($post->comment, ' ', 40))}}
-                                            @else
-
-                                            @endif
-                                            ...
-                                        </td> 
                                     </tr>
                                 @endforeach
                             </tbody>

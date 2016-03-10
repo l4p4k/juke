@@ -53,11 +53,15 @@ class PostController extends Controller
                 return view('error')->withdata($data);
             }
         }else{
-            $data = "No post to delete";
-            return view('error')->withdata($data);
+            return redirect()->route('deleteError');
         }
         //takes you to the previous page
         return Redirect::to(URL::previous());
+    }
+
+    public function deleteError(){
+        $data = "No post to delete";
+        return view('error')->withdata($data);
     }
 
 }

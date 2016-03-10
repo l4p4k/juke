@@ -35,4 +35,15 @@ class User extends Authenticatable
             ->first();
         return $query;
     }
+
+    // public function editUser($user_id, $phone, $postcode){
+    //     $userInfo = DB::table('users')
+    //         ->where('users.id', '=', $user_id)
+    //         ->first();
+
+    //     $userInfo->phone = $phone;
+    //     $userInfo->postcode = $postcode;
+    //     $userInfo->save();
+    //     return $userInfo;
+    // }
 }
