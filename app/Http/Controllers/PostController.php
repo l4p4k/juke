@@ -29,9 +29,6 @@ class PostController extends Controller
     public function index(){   
         $post = new Post();
         $data = $post->showPosts();
-        // foreach($data as $key => $post){
-        //     echo $post->title."<br>";
-        // }
         return view('welcome')->withdata($data);
     }
 
