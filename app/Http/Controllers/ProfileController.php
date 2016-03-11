@@ -53,11 +53,6 @@ class ProfileController extends Controller
     }
 
     public function editProfile(Request $request){
-        // $this->validate($request, [
-        //     'phone' => 'string|size:11',
-        //     'postcode' => 'string|array('Regex:/^[A-Za-z0-9\-! ,\'\"\/@\.:\(\)]+$/')'
-        // ]);
-
           // Fetch all request data.
         $data = array(
             "phone" => $request->input('phone'),
@@ -73,29 +68,24 @@ class ProfileController extends Controller
         // Create a new validator instance.
         $validator = Validator::make($data, $rules);
 
-        // $user_id = Auth::user()->id;
-        // $phone = $request['phone'];
-        // $postcode = $request['postcode'];
-
-        if ($validator->passes()) {
-        // Normally we would do something with the data.
-            var_dump($data);
-            echo " Data saved!!!";
-            return;
-        }
-
         if ($validator->fails()) {
-            var_dump($data);
-            echo " Data was not saved.";
-            return;
+            return redirect()->route('profile');
         }
 
-        // $thisUser = new User();
-        // $userInfo = $thisUser::where('users.id', '=', $user_id)->first();
+        $user_id = Auth::user()->id;
+        if ($validator->passes()) {
+            $thisUser = new User();
+            $userInfo = $thisUser::where('users.id', '=', $user_id)->first();
 
-        // $userInfo->phone = $phone;
-        // $userInfo->postcode = $postcode;
-        // $userInfo->save();\  
-        return redirect()->route('profile');
+            if($data['phone'] != $userInfo->phone){
+                $userInfo->phone = $data['phone'];   
+            }
+
+            if($data['postcode'] != $userInfo->postcode){ 
+                $userInfo->postcode = $data['postcode'];          
+            }
+            $userInfo->save();
+            return redirect()->route('profile');
+        }
     }
 }
