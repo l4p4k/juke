@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Post as Post;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Validator;
 use Auth;
 use DB;
+
+use App\Post as Post;
 
 class CreateController extends Controller
 {
@@ -25,25 +27,43 @@ class CreateController extends Controller
 
     public function create()
     {
-        $message = "";
-        return view('create')->withdata($message);
+        $data = "";
+        return view('create')->withdata($data);
     }
 
     public function postCreate(Request $request)
     {
         //needs validation
         $user_id = Auth::user()->id;
-        $title = $request['title'];
-        $comment = $request['comment'];
 
-        $post = new Post();
-        $insert = $post->createPost($user_id, $title, $comment);
-        
-        if($insert == 1){
-            $message = "<div class='alert alert-success'> <strong>Success!</strong> You created a post </div>";
-        }else{
-            $message = "<div class='alert alert-danger'> <strong>Error!</strong> Your post was not created </div>";
+        // Get data from form post
+        $formData = array(
+            'title' => $request->input('title'),
+            'comment' => $request->input('comment'),
+        );
+
+        // Build the validation rules.
+        $rules = array(
+            'title'     => 'required|string|max:60|min:20',
+            'comment'     => 'required|string|max:255|min:50',
+        );
+
+        // Create a new validator instance.
+        $validator = Validator::make($formData, $rules);
+
+        // If data is not valid
+        if ($validator->fails()) {
+            $data = 'false';
+            return redirect()->route('create')->withErrors($validator)->withInput();
         }
-        return view('create')->withdata("$message");
+
+        $user_id = Auth::user()->id;
+        // If the data passes validation
+        if ($validator->passes()) {
+            $post = new Post();
+            //$insert = $post->createPost($user_id, $formData['title'], $formData['comment']);
+            $data = 'true';
+            return view('create')->withdata("$data");
+        }
     }
 }

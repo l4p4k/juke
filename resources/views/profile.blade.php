@@ -8,9 +8,16 @@
                 <div class="panel-heading">Welcome <b>{{$data[0]->fname}} {{$data[0]->sname}}!</b></div>
 
                 <div class="panel-body">
+                    
+                    @if(Session::has('messageStatus'))
+                        @if(Session::get('messageStatus') == 'success')
+                            <div class='alert alert-success'> <strong>Success!</strong> Your details have been updated</div>
+                            @else
+                            <div class='alert alert-danger'> <strong>Oops!</strong> Please fix any errors and try submitting again</div>                            
+                        @endif  
+                    @endif 
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('profile.edit') }}">
                         {!! csrf_field() !!}
-
                         <p><b>Admin rank: </b> @if($data[0]->admin)True @else False @endif</p>
                         <p><b>User ID: </b> {{$data[0]->id}}</p>
                         <p><b>Email: </b> @if($data[0]->email != null) {{$data[0]->email}} @else --- @endif</p>

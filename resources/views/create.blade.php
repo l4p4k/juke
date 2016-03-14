@@ -9,7 +9,11 @@
 
                 <div class="panel-body">
 
-                    {{$data}}
+                    @if($data == "")
+                        <!-- do nothing -->
+                    @elseif($data == 'true')
+                        <div class='alert alert-success'> <strong>Success!</strong> You created a post </div>
+                    @endif
                     
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('post.create') }}">
                         {!! csrf_field() !!}
@@ -47,7 +51,6 @@
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-comment"></i> Submit
                                 </button>
-                                <!-- <input type="hidden" value ="{{ Session::token()}}" name="_token"> -->
                             </div>
                         </div>
                     </form>

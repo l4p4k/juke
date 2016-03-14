@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use App\User as User;
-use App\Post as Post;
+
 use Auth;
 use Validator;
+use Session;
+
+use App\User as User;
+use App\Post as Post;
 
 class ProfileController extends Controller
 {
@@ -34,7 +37,6 @@ class ProfileController extends Controller
 
         $userPosts = new Post();
         $data[1] = $userPosts->getUserPosts($yourUserID);
-        // var_dump($data);
         return view('profile')->withdata($data);
     }
 
@@ -49,17 +51,17 @@ class ProfileController extends Controller
         $userPosts = new Post();
         $data[1] = $userPosts->getUserPosts($id);
 
-        return view('userProfile')->withdata($data);
+        //return view('userProfile')->withdata($data);
     }
 
     public function editProfile(Request $request){
-          // Fetch all request data.
+          // Get data from form post
         $data = array(
             "phone" => $request->input('phone'),
             "postcode" => $request->input('postcode'),
         );
 
-        // Build the validation constraint set.
+        // Build the validation rules.
         $rules = array(
             'phone'     => 'string|size:11',
             'postcode'  => array('Regex:/(^[A-Z]{1,2}[0-9R][0-9A-Z]?[\s]?[0-9][ABD-HJLNP-UW-Z]{2}$)/'),
@@ -68,11 +70,15 @@ class ProfileController extends Controller
         // Create a new validator instance.
         $validator = Validator::make($data, $rules);
 
+        // If data is not valid
         if ($validator->fails()) {
-            return redirect()->route('profile');
+            $messageStatus = "error";
+            Session::flash('messageStatus', $messageStatus);
+            return redirect()->route('profile')->withErrors($validator)->withInput();
         }
 
         $user_id = Auth::user()->id;
+        // If the data passes validation
         if ($validator->passes()) {
             $thisUser = new User();
             $userInfo = $thisUser::where('users.id', '=', $user_id)->first();
@@ -85,7 +91,18 @@ class ProfileController extends Controller
                 $userInfo->postcode = $data['postcode'];          
             }
             $userInfo->save();
-            return redirect()->route('profile');
+            $message = "true";
+
+            $loggedUser = new User();
+            $yourUserID = Auth::user()->id;
+            $data[0] = $loggedUser->getLoggedUser($yourUserID);
+
+            $userPosts = new Post();
+            $data[1] = $userPosts->getUserPosts($yourUserID);
+
+            $messageStatus = "success";
+            Session::flash('messageStatus', $messageStatus);
+            return Redirect::route('profile');
         }
     }
 }
