@@ -63,6 +63,29 @@
                     @endif
                 </ul>
             </div>
+            <div class="navbar-right">
+                <form class="form-inline" role="form" method="POST" action="{{ route('simple_search') }}">
+                    {!! csrf_field() !!}
+
+                    <div class="form-group{{ $errors->has('search') ? ' has-error' : '' }}">
+                        <label class="col-md-4 control-label">Search</label>
+
+                        <input type="search" class="form-control" name="search" value="{{ old('search') }}">
+
+                        @if ($errors->has('search'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('search') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-search"></i> Search
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </nav>
 
