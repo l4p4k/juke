@@ -32,6 +32,15 @@ class PostController extends Controller
         return view('welcome')->withdata($data);
     }
 
+    public function simple_search(Request $request){
+        $post = new Post();
+        $criteria = $request->input('search');
+        $data[0] = $post->search('title', $criteria);
+        $data[1] = null;
+        //var_dump($data);
+        return view('results')->withdata($data);
+    }
+
     public function viewPost($id){
         $post = new Post();
         $data = $post->showPost($id);

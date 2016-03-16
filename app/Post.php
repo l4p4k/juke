@@ -54,4 +54,15 @@ class Post extends Model
 
         return $query;
     }
+
+    public function search($column, $criteria){
+        $query = DB::table('users')
+            ->join('post', 'users.id', '=', 'post.user_id')
+            ->select('users.id', 'users.fname', 'users.sname', 'post.*')
+            ->orderBy('post.id', 'DESC')
+            ->where('post.'.$column, 'like','%'.$criteria.'%')
+            ->get();
+
+        return $query;
+    }
 }
