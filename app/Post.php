@@ -41,9 +41,9 @@ class Post extends Model
         return $query;
     }
 
-    public function createPost($user_id, $title, $comment){
+    public function createPost($user_id, $post_type, $title, $comment){
         $query = DB::table('post')->insert([
-            ['id' => "", 'user_id' => $user_id, 'title' => $title, 'comment' => $comment]
+            ['id' => "", 'user_id' => $user_id, 'post_type' => $post_type, 'title' => $title, 'comment' => $comment]
         ]);
 
         return $query;

@@ -46,6 +46,12 @@
                             </div>
                         </div>
 
+                        <label class="col-md-4 control-label">Is this post a request or offering your skills?</label>
+                        <div class="col-md-6">
+                            <input type="radio" name="post_type" value="0" checked> Service request<br>
+                            <input type="radio" name="post_type" value="1"> Skill offer<br>
+                        </div>
+                        <br>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">

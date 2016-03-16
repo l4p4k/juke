@@ -1,14 +1,62 @@
-<head>
-<link rel="stylesheet" type="text/css" href="mystyle.css">
-</head>
-
 body {
-	background-image:url("/../myfiles/background.png");
-    background-repeat:repeat-x;
-    background-repeat:repeat-y;
+	background-image:url("../myfiles/background.png");
 
     font-family: 'Lato';
+}
 
-    .fa-btn {
-            margin-right: 6px;
+.navbar-default {
+	background-image:url("../myfiles/nav background.png");
+}
+
+.panel-heading {
+	background-image:url("../myfiles/nav background.png");
+}
+
+.btn-twitter {
+    background: #00acee;
+    border-radius: 0;
+    color: #fff
+}
+.btn-twitter:link, .btn-twitter:visited {
+    color: #fff
+}
+.btn-twitter:active, .btn-twitter:hover {
+    background: #0087bd;
+    color: #fff
+}
+.btn-facebook {
+    background: #3b5998;
+    border-radius: 0;
+    color: #fff
+}
+.btn-facebook:link, .btn-facebook:visited {
+    color: #fff
+}
+.btn-facebook:active, .btn-facebook:hover {
+    background: #30477a;
+    color: #fff
+}
+.btn-googleplus {
+    background: #e93f2e;
+    border-radius: 0;
+    color: #fff
+}
+.btn-googleplus:link, .btn-googleplus:visited {
+    color: #fff
+}
+.btn-googleplus:active, .btn-googleplus:hover {
+    background: #ba3225;
+    color: #fff
+}
+.btn-linkedin {
+    background: #0e76a8;
+    border-radius: 0;
+    color: #fff
+}
+.btn-linkedin:link, .btn-linkedin:visited {
+    color: #fff
+}
+.btn-linkedin:active, .btn-linkedin:hover {
+    background: #0b6087;
+    color: #fff
 }

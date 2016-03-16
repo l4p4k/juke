@@ -16,6 +16,7 @@ class Post extends Migration
             //if doesnt work take out ->unique()
             $table->increments('id')->unique();
             $table->integer('user_id');
+            $table->string('post_type', 1);
             $table->string('title', 60);
             $table->string('comment', 255);
             $table->timestamps();

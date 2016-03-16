@@ -19,20 +19,17 @@ class CreateController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct(){
         $this->middleware('auth');
     }
 
 
-    public function create()
-    {
+    public function create(){
         $data = "";
         return view('create')->withdata($data);
     }
 
-    public function postCreate(Request $request)
-    {
+    public function postCreate(Request $request){
         //needs validation
         $user_id = Auth::user()->id;
 
@@ -40,6 +37,7 @@ class CreateController extends Controller
         $formData = array(
             'title' => $request->input('title'),
             'comment' => $request->input('comment'),
+            'post_type' => $request->input('post_type'),
         );
 
         // Build the validation rules.
@@ -61,7 +59,7 @@ class CreateController extends Controller
         // If the data passes validation
         if ($validator->passes()) {
             $post = new Post();
-            //$insert = $post->createPost($user_id, $formData['title'], $formData['comment']);
+            $insert = $post->createPost($user_id, $formData['post_type'], $formData['title'], $formData['comment']);
             $data = 'true';
             return view('create')->withdata("$data");
         }
