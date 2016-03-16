@@ -51,7 +51,7 @@ class ProfileController extends Controller
         $userPosts = new Post();
         $data[1] = $userPosts->getUserPosts($id);
 
-        //return view('userProfile')->withdata($data);
+        return view('userProfile')->withdata($data);
     }
 
     public function editProfile(Request $request){

@@ -61,7 +61,7 @@ class CreateController extends Controller
         // If the data passes validation
         if ($validator->passes()) {
             $post = new Post();
-            //$insert = $post->createPost($user_id, $formData['title'], $formData['comment']);
+            $insert = $post->createPost($user_id, $formData['title'], $formData['comment']);
             $data = 'true';
             return view('create')->withdata("$data");
         }
