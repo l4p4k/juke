@@ -5,7 +5,13 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Post Details</div>
+                <div class="panel-heading">
+                    @if($data->post_type)
+                    <b>Offer </b>
+                    @else
+                    <b>Request </b>
+                    @endif
+                    Post Details</div>
 
                 <div class="panel-body">
                     @if($data!=NULL)

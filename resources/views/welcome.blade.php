@@ -26,7 +26,14 @@
                                 @foreach($data as $post)
                                     <tr> 
                                         <td>
-                                            <b><a href=/post/{{$post->id}}>{{$post->title}}</a><b>
+                                            <a href=/post/{{$post->id}}>
+                                                @if($post->post_type)
+                                                <b>[Offer] </b>
+                                                @else
+                                                <b>[Request] </b>
+                                                @endif
+                                                {{$post->title}}
+                                            </a>
                                         </td>
                                         <td class="text-right">
                                             <a href=/profile/{{$post->user_id}}>{{$post->fname}} {{$post->sname}}</a>

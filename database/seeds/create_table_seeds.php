@@ -58,6 +58,7 @@ class create_table_seeds extends Seeder
         //POST --------------------------------------------------------------
         DB::table('post')->insert([
             'user_id' => "1",
+            'post_type' => "1",
             'title' => "A paragraph from wiki",
             'comment' => "A paragraph (from the Ancient Greek παράγραφος paragraphos, \"to write beside\" or \"written beside\") is a self-contained unit of a discourse in writing dealing with a particular point or idea. A paragraph consists of one or more sentences."
         ]);
@@ -65,6 +66,7 @@ class create_table_seeds extends Seeder
         foreach (range(1,20) as $index) {
             DB::table('post')->insert([
                 'user_id' => $faker->numberBetween(1,16),
+                'post_type' => $faker->numberBetween(0,1),
                 'title' => $faker->word,
                 'comment' => $faker->paragraph
             ]);
