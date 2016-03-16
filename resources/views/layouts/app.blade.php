@@ -68,7 +68,7 @@
                     {!! csrf_field() !!}
 
                     <div class="form-group{{ $errors->has('search') ? ' has-error' : '' }}">
-                        <label class="col-md-4 control-label">Search</label>
+                        <label class="control-label">Search</label>
 
                         <input type="search" class="form-control" name="search" value="{{ old('search') }}">
 
