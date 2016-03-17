@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
+            @if($data!=NULL)
             <div class="panel panel-default">
                 <div class="panel-heading">
                     @if($data->post_type)
@@ -11,18 +12,69 @@
                     @else
                     <b>Request </b>
                     @endif
-                    Post Details</div>
+                    Post Details
+                </div>
 
-                <div class="panel-body">
-                    @if($data!=NULL)
+                    <div class="panel-body">
                         <h1>{{$data->title}}</h1>
                         <p>{{$data->comment}}</p>
                         <a href=/profile/{{$data->user_id}}>{{$data->fname}} {{$data->sname}}</a>
-                    @else
-                        <h1> Error 9001 - IT'S OVAR 9000!!! </h1>
-                    @endif
+                    </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Message user
+                </div>
+                    <div class="panel-body">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ route('messages.create') }}">
+                            {!! csrf_field() !!}
+
+                            <div class="form-group{{ $errors->has('subject') ? ' has-error' : '' }}">
+                                <label class="col-md-2 control-label">Subject</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" name="subject" value="{{ old('subject') }}">
+
+                                    @if ($errors->has('subject'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('subject') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('msg') ? ' has-error' : '' }}">
+                                <label class="col-md-2 control-label">Message</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" name="msg" value="{{ old('msg') }}">
+
+                                    @if ($errors->has('msg'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('msg') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-0">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-comment"></i> Send message</a>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
+            @else
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Error
+                </div>
+                <div class="panel-body">
+                    Error in post details
+                </div>
+            </div>
+            @endif
 
             <div class="panel panel-default">
                 <div class="panel-heading">Share</div>

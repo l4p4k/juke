@@ -77,6 +77,16 @@ Route::group(['middleware' => 'web'], function () {
         'as' => 'profile'
     ]);
 
+    Route::get('/messages', [
+        'uses' => 'MessageController@index',
+        'as' => 'messages'
+    ]);
+
+    Route::post('/new_message', [
+        'uses' => 'MessageController@create',
+        'as' => 'messages.create'
+    ]);
+
     Route::post('/editProfile', [
         'uses' => 'ProfileController@editProfile',
         'as' => 'profile.edit'

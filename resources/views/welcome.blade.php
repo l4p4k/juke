@@ -52,7 +52,7 @@
                         </table>
                     </div>
                     @else
-                    This user has no posts
+                    There are no posts
                     @endif
                 </div>
             </div>

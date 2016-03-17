@@ -40,8 +40,11 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/') }}"><i class="fa fa-home"></i> Home</a></li>
+                    @if (!Auth::guest())
                     <li><a href="{{ url('/profile') }}">Profile</a></li>
+                    <li><a href="{{ url('/messages') }}">My messages</a></li>
                     <li><a href="{{ url('/create') }}">Create Post</a></li>
+                    @endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->
