@@ -46,8 +46,7 @@
                             <div class="form-group{{ $errors->has('msg') ? ' has-error' : '' }}">
                                 <label class="col-md-2 control-label">Message</label>
                                 <div class="col-md-4">
-                                    <input type="text" class="form-control" name="msg" value="{{ old('msg') }}">
-
+                                    <textarea type="text" rows="5" class="form-control" name="msg" value="{{ old('msg') }}"></textarea>
                                     @if ($errors->has('msg'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('msg') }}</strong>

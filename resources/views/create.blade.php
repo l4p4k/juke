@@ -22,7 +22,7 @@
                             <label class="col-md-4 control-label">Title</label>
 
                             <div class="col-md-6">
-                                <input type="title" class="form-control" name="title" value="{{ old('title') }}">
+                                <input type="text" class="form-control" name="title" value="{{ old('title') }}">
 
                                 @if ($errors->has('title'))
                                     <span class="help-block">
@@ -36,7 +36,7 @@
                             <label class="col-md-4 control-label">Comment</label>
 
                             <div class="col-md-6">
-                                <input type="comment" class="form-control" name="comment" value="{{ old('comment') }}">
+                                <textarea type="text" rows="5" class="form-control" name="comment" value="{{ old('comment') }}"></textarea>
 
                                 @if ($errors->has('comment'))
                                     <span class="help-block">

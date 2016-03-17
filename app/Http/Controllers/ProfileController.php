@@ -72,7 +72,7 @@ class ProfileController extends Controller
 
         // If data is not valid
         if ($validator->fails()) {
-            $messageStatus = "error";
+            $messageStatus = "profile update error";
             Session::flash('messageStatus', $messageStatus);
             return redirect()->route('profile')->withErrors($validator)->withInput();
         }
@@ -91,7 +91,6 @@ class ProfileController extends Controller
                 $userInfo->postcode = $data['postcode'];          
             }
             $userInfo->save();
-            $message = "true";
 
             $loggedUser = new User();
             $yourUserID = Auth::user()->id;
@@ -100,7 +99,7 @@ class ProfileController extends Controller
             $userPosts = new Post();
             $data[1] = $userPosts->getUserPosts($yourUserID);
 
-            $messageStatus = "success";
+            $messageStatus = "profile update success";
             Session::flash('messageStatus', $messageStatus);
             return Redirect::route('profile');
         }

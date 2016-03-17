@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 use Auth;
 use Validator;
 use Session;
+use URL;
 
 use App\Message as Message;
 
@@ -28,8 +29,14 @@ class MessageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){   
-        return view('messages');//->withdata($data);
+        //get authorised user's ID
+        $user_id = Auth::user()->id;
+
+        $msg = new Message();
+        $data = $msg->showMyMessages($user_id);
+        return view('messages')->withdata($data);
     }
+
 
     public function create(Request $request){
         //get authorised user's ID
@@ -44,7 +51,7 @@ class MessageController extends Controller
         // Build the validation rules.
         $rules = array(
             'subject' => 'required|string|max:50|min:10',
-            'msg' => 'required|string|max:50|min:10',
+            'msg' => 'required|string|max:255|min:20',
             'post_id' => 'required',
         );
 
@@ -53,7 +60,7 @@ class MessageController extends Controller
 
         // If data is not valid
         if ($validator->fails()) {
-            return redirect()->route('profile')->withErrors($validator)->withInput();
+            return Redirect::to(URL::previous())->withErrors($validator)->withInput();
         }
 
         $user_id = Auth::user()->id;
@@ -61,8 +68,7 @@ class MessageController extends Controller
         if ($validator->passes()) {
             $msg = new Message();
             $msg->createMessage($user_id, $formData['post_id'], $formData['subject'], $formData['msg']);
-            $data = 'true';
-            //Session::flash('messageStatus', $messageStatus);
+            Session::flash('messageStatus', $messageStatus);
             return redirect()->route('profile');
         }
     }
