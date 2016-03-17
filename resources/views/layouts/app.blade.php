@@ -70,7 +70,7 @@
                     <div class="form-group{{ $errors->has('search') ? ' has-error' : '' }}">
                         <label class="control-label">Search</label>
 
-                        <input type="search" class="form-control" name="search" value="{{ old('search') }}">
+                        <input type="text" class="form-control" name="search" value="{{ old('search') }}">
 
                         @if ($errors->has('search'))
                             <span class="help-block">

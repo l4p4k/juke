@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+
 use App\Post as Post;
 use App\Http\Requests;
-use Auth;
-use Illuminate\Support\Facades\Redirect;
+
 use URL;
+use Validator;
+use Auth;
 //use App\Http\Controllers\Controller;
 
 class PostController extends Controller
@@ -34,11 +37,33 @@ class PostController extends Controller
 
     public function simple_search(Request $request){
         $post = new Post();
-        $criteria = $request->input('search');
-        $data[0] = $post->search('title', $criteria);
-        $data[1] = null;
-        //var_dump($data);
-        return view('results')->withdata($data);
+        // Get data
+        $input_data = array(
+            'search'     => $request->input('search')
+        );
+        // Build the validation rules.
+        $rules = array(
+            'search'     => 'string|min:3'
+        );
+
+        // Create a new validator instance.
+        $validator = Validator::make($input_data, $rules);
+
+        if($input_data['search'] == ""){
+            $error = array('search' => "The search key must not be empty");
+            return Redirect::to(URL::previous())->withErrors($error)->withInput();
+        }
+
+         if (($validator->fails())) {
+            return Redirect::to(URL::previous())->withErrors($validator)->withInput();
+        }
+        // If the data passes validation
+        if ($validator->passes()) {
+            $data[0] = $post->search('title', $input_data['search']);
+            $data[1] = $post->search('comment', $input_data['search']);
+            // var_dump($data);
+            return view('results')->withdata($data);
+        }
     }
 
     public function viewPost($id){
