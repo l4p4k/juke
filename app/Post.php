@@ -11,6 +11,7 @@ class Post extends Model
 
     public function user(){
     	return $this->belongsTo('App\User');
+        return $this->hasMany('App\Message', 'post_id');
     }
 
     public function showPosts(){

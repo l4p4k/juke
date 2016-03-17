@@ -30,7 +30,7 @@ class CreateController extends Controller
     }
 
     public function postCreate(Request $request){
-        //needs validation
+        //get authorised user's ID
         $user_id = Auth::user()->id;
 
         // Get data from form post

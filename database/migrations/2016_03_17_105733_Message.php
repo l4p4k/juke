@@ -15,6 +15,7 @@ class Message extends Migration
         Schema::create('message', function (Blueprint $table) {
             $table->increments('id')->unique();
             $table->integer('user_id');
+            $table->integer('post_id');
             $table->string('subject', 60);
             $table->string('msg', 255);
             $table->timestamps();
