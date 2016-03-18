@@ -30,9 +30,6 @@ Route::group(['middleware' => 'web'], function () {
         'as'   => 'home'
     ]);
 
-    Route::get('/home', function(){
-        return redirect()->route('home');
-    });
 
     Route::get('/post/{id}', [
         'uses' => 'PostController@viewPost',

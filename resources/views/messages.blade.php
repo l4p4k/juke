@@ -8,7 +8,38 @@
                 <div class="panel-heading">My messages</div>
 
                 <div class="panel-body">
-                	Poop
+                    @if($data != null)
+                        <div class="table-responsive">
+                            <table class="table" style="width:100%">
+                                <thead>
+                                    <tr>
+                                    <th>Subject</th> 
+                                    <th>Message</th> 
+                                    <th>Post Title</th> 
+                                    <th class="text-right">Posted by</th>
+                                    </tr>
+                                </thead> 
+                                <tbody>
+                                    <!-- @foreach($data as $data_post) -->
+                                    @foreach($data as $post)
+                                        <tr> 
+                                            <td><b>{{$post->subject}}<b></td>
+                                            <td>{{$post->msg}}</td>
+                                            <td class="text-right">
+                                                <a href=/post/{{$post->post_id}}>{{$post->title}}</a>
+                                            </td>
+                                            <td class="text-right">
+                                                <a href=/profile/{{$post->user_id}}>{{$post->fname}} {{$post->sname}}</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    <!-- @endforeach -->
+                                </tbody>
+                            </table>
+                        </div>
+                    @else
+                    You have no messages
+                    @endif
                 </div>
             </div>
         </div>

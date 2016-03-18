@@ -32,7 +32,7 @@ class User extends Authenticatable
 
     public function getLoggedUser($id){
         $query = DB::table('users')
-            ->where('users.id', '=', $id)
+            ->where('users.user_id', '=', $id)
             ->first();
         return $query;
     }

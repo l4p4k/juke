@@ -13,7 +13,7 @@ class Message extends Migration
     public function up()
     {
         Schema::create('message', function (Blueprint $table) {
-            $table->increments('id')->unique();
+            $table->increments('message_id')->unique();
             $table->integer('user_id');
             $table->integer('post_id');
             $table->string('subject', 60);

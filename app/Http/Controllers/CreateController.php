@@ -31,7 +31,7 @@ class CreateController extends Controller
 
     public function postCreate(Request $request){
         //get authorised user's ID
-        $user_id = Auth::user()->id;
+        $user_id = Auth::user()->user_id;
 
         // Get data from form post
         $formData = array(
@@ -55,7 +55,6 @@ class CreateController extends Controller
             return redirect()->route('create')->withErrors($validator)->withInput();
         }
 
-        $user_id = Auth::user()->id;
         // If the data passes validation
         if ($validator->passes()) {
             $post = new Post();

@@ -30,17 +30,18 @@ class MessageController extends Controller
      */
     public function index(){   
         //get authorised user's ID
-        $user_id = Auth::user()->id;
+        $user_id = Auth::user()->user_id;
 
         $msg = new Message();
         $data = $msg->showMyMessages($user_id);
+        //var_dump($data);
         return view('messages')->withdata($data);
     }
 
 
     public function create(Request $request){
         //get authorised user's ID
-        $user_id = Auth::user()->id;
+        $user_id = Auth::user()->user_id;
 
         $formData = array(
             'subject' => $request->input('subject'),
@@ -63,12 +64,11 @@ class MessageController extends Controller
             return Redirect::to(URL::previous())->withErrors($validator)->withInput();
         }
 
-        $user_id = Auth::user()->id;
         // If the data passes validation
         if ($validator->passes()) {
             $msg = new Message();
             $msg->createMessage($user_id, $formData['post_id'], $formData['subject'], $formData['msg']);
-            Session::flash('messageStatus', $messageStatus);
+            //Session::flash('messageStatus', $messageStatus);
             return redirect()->route('profile');
         }
     }

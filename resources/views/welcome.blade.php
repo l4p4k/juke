@@ -26,7 +26,7 @@
                                 @foreach($data as $post)
                                     <tr> 
                                         <td>
-                                            <a href=/post/{{$post->id}}>
+                                            <a href=/post/{{$post->post_id}}>
                                                 @if($post->post_type)
                                                 <b>[Offer] </b>
                                                 @else
@@ -41,7 +41,7 @@
                                         @if (!Auth::guest())
                                         @if(Auth::user()->admin)
                                         <td>
-                                            <a href=/delete/{{$post->id}} class='btn btn-danger'>
+                                            <a href=/delete/{{$post->post_id}} class='btn btn-danger'>
                                             <i class="fa fa-trash-o fa-lg"></i> Delete</a>
                                         </td> 
                                         @endif 

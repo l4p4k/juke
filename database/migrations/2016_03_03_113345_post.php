@@ -14,7 +14,7 @@ class Post extends Migration
     {
         Schema::create('post', function (Blueprint $table) {
             //if doesnt work take out ->unique()
-            $table->increments('id')->unique();
+            $table->increments('post_id')->unique();
             $table->integer('user_id');
             $table->string('post_type', 1);
             $table->string('title', 60);
