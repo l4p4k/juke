@@ -32,7 +32,7 @@ class ProfileController extends Controller
     public function profile()
     {
         $loggedUser = new User();
-        $yourUserID = Auth::user()->user_id;
+        $yourUserID = Auth::user()->id;
         $data[0] = $loggedUser->getLoggedUser($yourUserID);
 
         $userPosts = new Post();
@@ -77,11 +77,11 @@ class ProfileController extends Controller
             return redirect()->route('profile')->withErrors($validator)->withInput();
         }
 
-        $user_id = Auth::user()->user_id;
+        $user_id = Auth::user()->id;
         // If the data passes validation
         if ($validator->passes()) {
             $thisUser = new User();
-            $userInfo = $thisUser::where('users.user_id', '=', $user_id)->first();
+            $userInfo = $thisUser::where('users.id', '=', $user_id)->first();
 
             if($data['phone'] != $userInfo->phone){
                 $userInfo->phone = $data['phone'];   

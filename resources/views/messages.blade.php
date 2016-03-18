@@ -9,6 +9,8 @@
 
                 <div class="panel-body">
                     @if($data != null)
+                        <?php $result = count($data);
+                        echo $result; ?>
                         <div class="table-responsive">
                             <table class="table" style="width:100%">
                                 <thead>

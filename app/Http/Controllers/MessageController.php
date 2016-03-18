@@ -30,7 +30,7 @@ class MessageController extends Controller
      */
     public function index(){   
         //get authorised user's ID
-        $user_id = Auth::user()->user_id;
+        $user_id = Auth::user()->id;
 
         $msg = new Message();
         $data = $msg->showMyMessages($user_id);
@@ -41,7 +41,7 @@ class MessageController extends Controller
 
     public function create(Request $request){
         //get authorised user's ID
-        $user_id = Auth::user()->user_id;
+        $user_id = Auth::user()->id;
 
         $formData = array(
             'subject' => $request->input('subject'),

@@ -16,8 +16,8 @@ class Post extends Model
 
     public function showPosts(){
     	$query = DB::table('users')
-			->join('post', 'users.user_id', '=', 'post.user_id')
-			->select('users.user_id', 'users.fname', 'users.sname', 'post.*')
+			->join('post', 'users.id', '=', 'post.user_id')
+			->select('users.id', 'users.fname', 'users.sname', 'post.*')
 			->orderBy('post.post_id', 'DESC')
 			->get();
     	return $query;
@@ -25,8 +25,8 @@ class Post extends Model
 
     public function showPost($id){
         $query = DB::table('users')
-            ->join('post', 'users.user_id', '=', 'post.user_id')
-            ->select('users.user_id', 'users.fname', 'users.sname', 'post.*')
+            ->join('post', 'users.id', '=', 'post.user_id')
+            ->select('users.id', 'users.fname', 'users.sname', 'post.*')
             ->where('post.post_id', '=', $id)
             ->first();
         return $query;
@@ -34,10 +34,10 @@ class Post extends Model
 
     public function getUserPosts($id){
         $query = DB::table('users')
-            ->join('post', 'users.user_id', '=', 'post.user_id')
-            ->select('users.user_id', 'users.fname', 'users.sname', 'post.*')
+            ->join('post', 'users.id', '=', 'post.user_id')
+            ->select('users.id', 'users.fname', 'users.sname', 'post.*')
             ->orderBy('post.post_id', 'DESC')
-            ->where('users.user_id', '=', $id)
+            ->where('users.id', '=', $id)
             ->get();
         return $query;
     }
@@ -58,8 +58,8 @@ class Post extends Model
 
     public function search($column, $criteria){
         $query = DB::table('users')
-            ->join('post', 'users.user_id', '=', 'post.user_id')
-            ->select('users.user_id', 'users.fname', 'users.sname', 'post.*')
+            ->join('post', 'users.id', '=', 'post.user_id')
+            ->select('users.id', 'users.fname', 'users.sname', 'post.*')
             ->orderBy('post.post_id', 'DESC')
             ->where('post.'.$column, 'like','%'.$criteria.'%')
             ->get();
