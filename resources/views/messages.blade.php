@@ -9,8 +9,6 @@
 
                 <div class="panel-body">
                     @if($data != null)
-                        <?php $result = count($data);
-                        echo $result; ?>
                         <div class="table-responsive">
                             <table class="table" style="width:100%">
                                 <thead>
@@ -22,7 +20,6 @@
                                     </tr>
                                 </thead> 
                                 <tbody>
-                                    <!-- @foreach($data as $data_post) -->
                                     @foreach($data as $post)
                                         <tr> 
                                             <td><b>{{$post->subject}}<b></td>
@@ -35,7 +32,6 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                    <!-- @endforeach -->
                                 </tbody>
                             </table>
                         </div>
