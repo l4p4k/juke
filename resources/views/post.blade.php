@@ -55,7 +55,7 @@
                                 </div>
                             </div>
 
-                            <input type="hidden" name="post_id" value="{{$data->id}}">
+                            <input type="hidden" name="post_id" value="{{$data->post_id}}">
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-0">

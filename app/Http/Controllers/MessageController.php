@@ -67,6 +67,7 @@ class MessageController extends Controller
         // If the data passes validation
         if ($validator->passes()) {
             $msg = new Message();
+            // return "".$user_id."".$formData['post_id']."".$formData['subject']."".$formData['msg'];
             $msg->createMessage($user_id, $formData['post_id'], $formData['subject'], $formData['msg']);
             //Session::flash('messageStatus', $messageStatus);
             return redirect()->route('profile');

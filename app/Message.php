@@ -12,7 +12,7 @@ class Message extends Model{
 
     public function createMessage($user_id, $post_id, $subject, $msg){
         $query = DB::table('message')->insert([
-            ['msg_user_id' => "", 'user_id' => $user_id, 'post_id' => $post_id, 'subject' => $subject, 'msg' => $msg]
+            ['msg_id' => "", 'msg_user_id' => $user_id, 'post_id' => $post_id, 'subject' => $subject, 'msg' => $msg]
         ]);
 
         return $query;
