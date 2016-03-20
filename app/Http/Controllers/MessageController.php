@@ -33,7 +33,8 @@ class MessageController extends Controller
         $user_id = Auth::user()->id;
 
         $msg = new Message();
-        $data = $msg->showMyMessages($user_id);
+        $data[0] = $msg->showMessagesToMe($user_id);
+        $data[1] = $msg->showMessagesByMe($user_id);
         //var_dump($data);
         return view('messages')->withdata($data);
     }

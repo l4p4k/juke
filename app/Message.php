@@ -18,14 +18,25 @@ class Message extends Model{
         return $query;
     }
 
-    public function showMyMessages($id){
+    public function showMessagesToMe($id){
     	$query = DB::table('message')
     		->select('message.*', 'users.fname','users.sname', 'post.*')
 			->join('post', 'post.post_id', '=', 'message.post_id')
 			->join('users', 'users.id', '=', 'message.msg_user_id')
-			->orderBy('post.post_id', 'DESC')
+			->orderBy('message.msg_id', 'DESC')
             ->where('post.user_id', '=', $id)
 			->get();
     	return $query;
+    }
+
+    public function showMessagesByMe($id){
+        $query = DB::table('message')
+            ->select('message.*', 'users.fname','users.sname', 'post.*')
+            ->join('post', 'post.post_id', '=', 'message.post_id')
+            ->join('users', 'users.id', '=', 'post.user_id')
+            ->orderBy('message.msg_id', 'DESC')
+            ->where('message.msg_user_id', '=', $id)
+            ->get();
+        return $query;
     }
 }
