@@ -19,8 +19,14 @@
                         <h1>{{$data->title}}</h1>
                         <p>{{$data->comment}}</p>
                         <a href=/profile/{{$data->user_id}}>{{$data->fname}} {{$data->sname}}</a>
+                    
+                        <h3>Rate the post</h3>
+                        <form method="POST" action="{{ route('post.rate') }}">
+                            {!! csrf_field() !!}
+                            <input  type='hidden' name='rating' class='rating' value='' />
+                            <input id='rate' type='submit' class='rate' value='rate' />
+                        </form>
                     </div>
-                        <input id="kartik" class="rating" min=0 max=10 data-stars="10" data-step="1" data-symbol="&#xe005;" data-default-caption="{rating} hearts" data-star-captions="{}""/>
             </div>
 
             <div class="panel panel-default">
@@ -96,4 +102,7 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="../js/jquery-2.2.2.js"></script>
+<script type="text/javascript" src="../js/bootstrap-rating.js"></script>
+
 @endsection

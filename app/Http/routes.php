@@ -37,6 +37,11 @@ Route::group(['middleware' => 'web'], function () {
         function ($id = '1') {
     }]);
 
+    Route::post('/rate', [
+        'uses' => 'PostController@rate',
+        'as' => 'post.rate'
+    ]);
+
     Route::get('/profile/change', [
         'uses' => 'ProfileController@change',
         'as' => 'profile.change'

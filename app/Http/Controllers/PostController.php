@@ -35,6 +35,13 @@ class PostController extends Controller
         return view('welcome')->withdata($data);
     }
 
+    public function rate(Request $request){
+        $post = new Post();
+        $rating = $request->input('rating');
+        //$post->rate($rating);
+        echo($rating. " was rated");
+    }
+
     public function simple_search(Request $request){
         $post = new Post();
         // Get data
