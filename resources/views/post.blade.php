@@ -20,6 +20,7 @@
                         <p>{{$data->comment}}</p>
                         <a href=/profile/{{$data->user_id}}>{{$data->fname}} {{$data->sname}}</a>
                     </div>
+                        <input id="kartik" class="rating" min=0 max=10 data-stars="10" data-step="1" data-symbol="&#xe005;" data-default-caption="{rating} hearts" data-star-captions="{}""/>
             </div>
 
             <div class="panel panel-default">
