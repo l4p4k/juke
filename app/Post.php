@@ -39,14 +39,6 @@ class Post extends Model
         return $query;
     }
 
-    public function getRating($post_id){
-        $query = DB::table('subscription')
-            ->select('subscription.*')
-            ->where('subscription.post_id', '=', $post_id)
-            ->get();
-        return $query;
-    }
-
     public function getUserPosts($id){
         $query = DB::table('users')
             ->join('post', 'users.id', '=', 'post.user_id')
@@ -60,14 +52,6 @@ class Post extends Model
     public function createPost($user_id, $post_type, $title, $comment){
         $query = DB::table('post')->insert([
             ['post_id' => "", 'user_id' => $user_id, 'post_type' => $post_type, 'title' => $title, 'comment' => $comment]
-        ]);
-
-        return $query;
-    }
-
-    public function rate($post_id, $user_id, $rate){
-        $query = DB::table('subscription')->insert([
-            ['sub_id' => "", 'post_id' => $post_id, 'user_id' => $user_id, 'rating' => $rate]
         ]);
 
         return $query;

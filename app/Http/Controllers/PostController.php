@@ -36,24 +36,7 @@ class PostController extends Controller
         return view('welcome')->withdata($data);
     }
 
-    public function rate(Request $request){
-        $post = new Post();
-        $sub = new Sub();
 
-        $rating = $request->input('rating');
-        $post_id = $request->input('post_id');
-        $user_id = Auth::user()->id;
-
-        if($sub->is_rated($post_id, $user_id) == null){
-            $post->rate($post_id, $user_id, $rating);
-        }else{
-            return "you already voted";
-        }
-
-
-        //takes you to the previous page
-        return Redirect::to(URL::previous());
-    }
 
     public function simple_search(Request $request){
         $post = new Post();
@@ -88,8 +71,26 @@ class PostController extends Controller
 
     public function viewPost($id){
         $post = new Post();
+        $sub = new Sub();
+
+        $post_id = $id;
+        $user_id = Auth::user()->id;
         $data = $post->showPost($id);
-        $get_rating = $post->getRating($id);
+        $get_rating = $sub->getRating($id);
+
+        if($sub->is_subbed($post_id, $user_id) == null){
+            $var['is_subbed'] = false;
+        }else{
+            $var['is_subbed'] = true;
+        }
+
+        if($sub->is_not_rated($post_id, $user_id) == null){
+            $var['is_rated'] = true;
+        }else{
+            $var['is_rated'] = false;
+        }
+
+        //calculate rating
         if($get_rating != null){
             $rating = 0;
             $i = 0;
@@ -97,15 +98,20 @@ class PostController extends Controller
                 $rating += $value->rating;
                 $i++;
             }
-            $rating = $rating/$i;
+            $var['rating'] = $rating/$i;
         }else{
-            $rating = 0;
+            $var['rating'] = 0;
         }
-        return view('post')->withdata($data)->with('rating', $rating);
+
+
+        return view('post')
+        ->withdata($data)
+        ->with('var', $var);
     }
 
     public function deletePost($id){
         $post = new Post();
+
         $postDetails = $post->showPost($id);
         if($postDetails != null){
             if($postDetails->user_id == Auth::user()->id){

@@ -19,22 +19,28 @@
                         <h1>{{$data->title}}</h1>
                         <p>{{$data->comment}}</p>
                         <p><b>Rating:</b>
-                        @if($rating != null)
-                            Rating: {{round($rating, 2)}}/5
+                        @if($var['rating'] != null)
+                            Rating: {{round($var['rating'], 2)}}/5
                             @else
                             Not rated
                             @endif</p>
                         <b>Posted by:</b> <a href=/profile/{{$data->user_id}}>{{$data->fname}} {{$data->sname}}</a>
 
-                        <form method="POST" action="{{ route('post.rate') }}">
-                            {!! csrf_field() !!}
-                            <div class="text-right">
-                                <p><br>Rate this post</p>
-                                <input  type='hidden' name='rating' class='rating' value='' />
-                                <input type="hidden" name="post_id" value="{{$data->post_id}}">
-                                <input id='rate' type='submit' class='rate' value='rate' />
-                            </div>
-                        </form>
+                        @if($var['is_subbed'])
+                            @if($var['is_rated'] != true)
+                                <form method="POST" action="{{ route('sub.rate') }}">
+                                    {!! csrf_field() !!}
+                                    <div class="text-right">
+                                        <p><br>Rate this post</p>
+                                        <input  type='hidden' name='rating' class='rating'/>
+                                        <input type="hidden" name="post_id" value="{{$data->post_id}}">
+                                        <input id='rate' type='submit' class='rate' value='rate' />
+                                    </div>
+                                </form>
+                            @else
+                                <p class="text-right"><i>*You have voted this post*</i></p>
+                            @endif
+                        @endif
                     </div>
             </div>
 

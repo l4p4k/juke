@@ -38,8 +38,8 @@ Route::group(['middleware' => 'web'], function () {
     }]);
 
     Route::post('/rate', [
-        'uses' => 'PostController@rate',
-        'as' => 'post.rate'
+        'uses' => 'SubscriptionController@rate',
+        'as' => 'sub.rate'
     ]);
 
     Route::get('/profile/change', [
