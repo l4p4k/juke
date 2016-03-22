@@ -16,6 +16,10 @@
                 </div>
 
                     <div class="panel-body">
+                        <div class="text-right">
+                            <a href=/subscribe/{{$data->post_id}} class='btn btn-primary'>
+                            <i class="fa fa-asterisk"></i> Subscribe</a>
+                        </div>
                         <h1>{{$data->title}}</h1>
                         <p>{{$data->comment}}</p>
                         <p><b>Rating:</b>

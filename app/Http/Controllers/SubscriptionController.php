@@ -40,4 +40,8 @@ class SubscriptionController extends Controller
         //takes you to the previous page
         return Redirect::to(URL::previous());
     }
+
+    public function sub(){
+        $sub = new Sub();
+    }
 }

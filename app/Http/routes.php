@@ -30,7 +30,6 @@ Route::group(['middleware' => 'web'], function () {
         'as'   => 'home'
     ]);
 
-
     Route::get('/post/{id}', [
         'uses' => 'PostController@viewPost',
         'as' => 'post.view',
@@ -41,6 +40,12 @@ Route::group(['middleware' => 'web'], function () {
         'uses' => 'SubscriptionController@rate',
         'as' => 'sub.rate'
     ]);
+
+    Route::post('/subscribe/{id}', [
+        'uses' => 'SubscriptionController@sub',
+        'as' => 'sub.sub',
+        function ($id = null) {
+    }]);
 
     Route::get('/profile/change', [
         'uses' => 'ProfileController@change',
