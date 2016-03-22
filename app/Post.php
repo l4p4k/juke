@@ -50,6 +50,16 @@ class Post extends Model
         return $query;
     }
 
+    public function rate($post_id, $rate, $num){
+        DB::table('post')
+            ->where('post_id', $post_id)
+            ->update(array(
+                'rating' => $rate,
+                'num_ratings' => $num,
+                ));
+        return;
+    }
+
     public function deletePost($post_id){
         $query = DB::table('post')->where('post_id', '=', $post_id)->delete();
 

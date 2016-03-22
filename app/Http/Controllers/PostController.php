@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 use App\Post as Post;
+use App\Post_rating as Rating;
 use App\Http\Requests;
 
 use URL;
@@ -35,11 +36,28 @@ class PostController extends Controller
         return view('welcome')->withdata($data);
     }
 
+    // $rate = 5
+    // $num = 3
+    // $rating = rating from user
+
+    // RATE (($rate x $num) + $rating)/ $num+1
+    // eg. ((5 * 3) + 2)/ 4 = 4.25
     public function rate(Request $request){
         $post = new Post();
         $rating = $request->input('rating');
-        //$post->rate($rating);
-        echo($rating. " was rated");
+        $post_id = $request->input('post_id');
+
+        $rating_info = $post::where('post.post_id', '=', $post_id)->first();
+
+        $db_rate = $rating_info->rating;
+        $db_num = $rating_info->num_ratings;
+
+        $new_rating = (($db_rate*$db_num) + $rating)/($db_num+1);
+        $new_num = $db_num+1;
+
+        $post->rate($post_id, $new_rating, $new_num);
+        //takes you to the previous page
+        return Redirect::to(URL::previous());
     }
 
     public function simple_search(Request $request){

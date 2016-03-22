@@ -19,12 +19,17 @@
                         <h1>{{$data->title}}</h1>
                         <p>{{$data->comment}}</p>
                         <a href=/profile/{{$data->user_id}}>{{$data->fname}} {{$data->sname}}</a>
-                    
-                        <h3>Rate the post</h3>
+                        <h3>@if($data->rating != null)
+                            Rating: {{$data->rating}}/5
+                            @endif</h3>
                         <form method="POST" action="{{ route('post.rate') }}">
                             {!! csrf_field() !!}
-                            <input  type='hidden' name='rating' class='rating' value='' />
-                            <input id='rate' type='submit' class='rate' value='rate' />
+                            <div class="text-right">
+                                <p><br>Rate this post</p>
+                                <input  type='hidden' name='rating' class='rating' value='' />
+                                <input type="hidden" name="post_id" value="{{$data->post_id}}">
+                                <input id='rate' type='submit' class='rate' value='rate' />
+                            </div>
                         </form>
                     </div>
             </div>

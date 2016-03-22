@@ -19,7 +19,8 @@ class Post extends Migration
             $table->string('post_type', 1);
             $table->string('title', 60);
             $table->string('comment', 255);
-            $table->integer('rating');
+            $table->double('rating', 15, 1);
+            $table->integer('num_ratings');
             $table->timestamps();
         });
     }

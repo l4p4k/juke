@@ -27,6 +27,7 @@ class create_table_seeds extends Seeder
     	$faker = Faker::create('en_GB');
         $num_of_users1 = 10;
         $num_of_users2 = 5;
+        $num_of_users = $num_of_users1+$num_of_users2+1;
 
     	foreach (range(1,$num_of_users1) as $index) {
             $name = $faker->firstName();
@@ -65,18 +66,31 @@ class create_table_seeds extends Seeder
             'comment' => "A paragraph (from the Ancient Greek παράγραφος paragraphos, \"to write beside\" or \"written beside\") is a self-contained unit of a discourse in writing dealing with a particular point or idea. A paragraph consists of one or more sentences.",
             'rating' => "5"
         ]);
-        $num_of_posts = 16;
-        foreach (range(1,20) as $index) {
+        $num_of_posts1 = 10;
+        $num_of_posts2 = 10;
+        $num_of_posts = $num_of_posts1+$num_of_posts2+1;
+        foreach (range(1,$num_of_posts1) as $index) {
             DB::table('post')->insert([
-                'user_id' => $faker->numberBetween(1,$num_of_posts),
+                'user_id' => $faker->numberBetween(1,$num_of_users),
                 'post_type' => $faker->numberBetween(0,1),
                 'title' => $faker->word,
                 'comment' => $faker->paragraph,
-                'rating' => $faker->numberBetween(1,5)
+                'rating' => $faker->numberBetween(1,5),
+                'num_ratings' => $faker->numberBetween(1,$num_of_users),
             ]);
         }
-        $num_of_messages = 20;
+
+        foreach (range(1,$num_of_posts2) as $index) {
+            DB::table('post')->insert([
+                'user_id' => $faker->numberBetween(1,$num_of_users),
+                'post_type' => $faker->numberBetween(0,1),
+                'title' => $faker->word,
+                'comment' => $faker->paragraph,
+            ]);
+        }
+        
         //MESSAGE -----------------------------------------------------------------
+        $num_of_messages = 20;
         foreach (range(1,$num_of_messages) as $index) {
             DB::table('message')->insert([
                 'msg_user_id' => $faker->numberBetween(0,$num_of_users1+$num_of_users2),
