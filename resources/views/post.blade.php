@@ -20,7 +20,7 @@
                         <p>{{$data->comment}}</p>
                         <p><b>Rating:</b>
                         @if($var['rating'] != null)
-                            Rating: {{round($var['rating'], 2)}}/5
+                            {{round($var['rating'], 2)}}/5
                             @else
                             Not rated
                             @endif</p>

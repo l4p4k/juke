@@ -22,7 +22,7 @@ class PostController extends Controller
      * @return void
      */
     public function __construct(){
-        $this->middleware('auth', ['except' => ['index','viewPost']]);
+        $this->middleware('auth', ['except' => ['index','viewPost', 'simple_search']]);
     }
 
      /**
@@ -74,19 +74,24 @@ class PostController extends Controller
         $sub = new Sub();
 
         $post_id = $id;
-        $user_id = Auth::user()->id;
         $data = $post->showPost($id);
         $get_rating = $sub->getRating($id);
+        if (!Auth::guest()){
+            $user_id = Auth::user()->id;
 
-        if($sub->is_subbed($post_id, $user_id) == null){
+            if($sub->is_subbed($post_id, $user_id) == null){
+                $var['is_subbed'] = false;
+            }else{
+                $var['is_subbed'] = true;
+            }
+
+            if($sub->is_not_rated($post_id, $user_id) == null){
+                $var['is_rated'] = true;
+            }else{
+                $var['is_rated'] = false;
+            }
+        }else{
             $var['is_subbed'] = false;
-        }else{
-            $var['is_subbed'] = true;
-        }
-
-        if($sub->is_not_rated($post_id, $user_id) == null){
-            $var['is_rated'] = true;
-        }else{
             $var['is_rated'] = false;
         }
 

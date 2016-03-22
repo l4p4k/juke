@@ -21,7 +21,7 @@ class SubscriptionController extends Controller
      * @return void
      */
     public function __construct(){
-        $this->middleware('auth', ['except' => ['index','viewPost']]);
+        $this->middleware('auth');
     }
 
     public function rate(Request $request){
