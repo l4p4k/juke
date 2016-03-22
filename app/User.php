@@ -10,7 +10,14 @@ class User extends Authenticatable
 
     public function post(){
         return $this->hasMany('App\Post', 'user_id');
+    }
+
+    public function message(){
         return $this->hasMany('App\Message', 'user_id');
+    }
+
+    public function subscription(){
+        return $this->hasMany('App\Subscription', 'user_id');
     }
     /**
      * The attributes that are mass assignable.

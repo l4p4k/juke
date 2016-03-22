@@ -11,7 +11,14 @@ class Post extends Model
 
     public function user(){
     	return $this->belongsTo('App\User');
+    }
+
+    public function message(){
         return $this->hasMany('App\Message', 'post_id');
+    }
+
+    public function subscription(){
+        return $this->hasMany('App\Subscription', 'user_id');
     }
 
     public function showPosts(){
@@ -29,6 +36,14 @@ class Post extends Model
             ->select('users.id', 'users.fname', 'users.sname', 'post.*')
             ->where('post.post_id', '=', $id)
             ->first();
+        return $query;
+    }
+
+    public function getRating($post_id){
+        $query = DB::table('subscription')
+            ->select('subscription.*')
+            ->where('subscription.post_id', '=', $post_id)
+            ->get();
         return $query;
     }
 
@@ -50,14 +65,12 @@ class Post extends Model
         return $query;
     }
 
-    public function rate($post_id, $rate, $num){
-        DB::table('post')
-            ->where('post_id', $post_id)
-            ->update(array(
-                'rating' => $rate,
-                'num_ratings' => $num,
-                ));
-        return;
+    public function rate($post_id, $user_id, $rate){
+        $query = DB::table('subscription')->insert([
+            ['sub_id' => "", 'post_id' => $post_id, 'user_id' => $user_id, 'rating' => $rate]
+        ]);
+
+        return $query;
     }
 
     public function deletePost($post_id){

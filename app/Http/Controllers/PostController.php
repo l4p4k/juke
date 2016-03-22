@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 use App\Post as Post;
-use App\Post_rating as Rating;
+use App\Subscription as Sub;
 use App\Http\Requests;
 
 use URL;
@@ -36,26 +36,21 @@ class PostController extends Controller
         return view('welcome')->withdata($data);
     }
 
-    // $rate = 5
-    // $num = 3
-    // $rating = rating from user
-
-    // RATE (($rate x $num) + $rating)/ $num+1
-    // eg. ((5 * 3) + 2)/ 4 = 4.25
     public function rate(Request $request){
         $post = new Post();
+        $sub = new Sub();
+
         $rating = $request->input('rating');
         $post_id = $request->input('post_id');
+        $user_id = Auth::user()->id;
 
-        $rating_info = $post::where('post.post_id', '=', $post_id)->first();
+        if($sub->is_rated($post_id, $user_id) == null){
+            $post->rate($post_id, $user_id, $rating);
+        }else{
+            return "you already voted";
+        }
 
-        $db_rate = $rating_info->rating;
-        $db_num = $rating_info->num_ratings;
 
-        $new_rating = (($db_rate*$db_num) + $rating)/($db_num+1);
-        $new_num = $db_num+1;
-
-        $post->rate($post_id, $new_rating, $new_num);
         //takes you to the previous page
         return Redirect::to(URL::previous());
     }
@@ -94,7 +89,19 @@ class PostController extends Controller
     public function viewPost($id){
         $post = new Post();
         $data = $post->showPost($id);
-        return view('post')->withdata($data);
+        $get_rating = $post->getRating($id);
+        if($get_rating != null){
+            $rating = 0;
+            $i = 0;
+            foreach ($get_rating as $value) {
+                $rating += $value->rating;
+                $i++;
+            }
+            $rating = $rating/$i;
+        }else{
+            $rating = 0;
+        }
+        return view('post')->withdata($data)->with('rating', $rating);
     }
 
     public function deletePost($id){

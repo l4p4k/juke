@@ -18,10 +18,14 @@
                     <div class="panel-body">
                         <h1>{{$data->title}}</h1>
                         <p>{{$data->comment}}</p>
-                        <a href=/profile/{{$data->user_id}}>{{$data->fname}} {{$data->sname}}</a>
-                        <h3>@if($data->rating != null)
-                            Rating: {{$data->rating}}/5
-                            @endif</h3>
+                        <p><b>Rating:</b>
+                        @if($rating != null)
+                            Rating: {{round($rating, 2)}}/5
+                            @else
+                            Not rated
+                            @endif</p>
+                        <b>Posted by:</b> <a href=/profile/{{$data->user_id}}>{{$data->fname}} {{$data->sname}}</a>
+
                         <form method="POST" action="{{ route('post.rate') }}">
                             {!! csrf_field() !!}
                             <div class="text-right">

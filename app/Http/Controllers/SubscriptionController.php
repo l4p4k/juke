@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class UserController extends Controller
+class SubscriptionController extends Controller
 {
     //might not use
 }
