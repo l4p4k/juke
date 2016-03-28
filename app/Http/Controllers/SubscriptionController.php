@@ -41,7 +41,15 @@ class SubscriptionController extends Controller
         return Redirect::to(URL::previous());
     }
 
-    public function sub(){
+    public function sub($post_id){
         $sub = new Sub();
+        $user_id = Auth::user()->id;
+
+        if($sub->is_subbed($post_id, $user_id) != null){
+            return "you're already subscribed to this post";
+        }else{
+            $insert = $sub->subscribe($user_id, $post_id);
+            var_dump($insert);
+        }
     }
 }

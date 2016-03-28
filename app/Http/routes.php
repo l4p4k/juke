@@ -41,7 +41,7 @@ Route::group(['middleware' => 'web'], function () {
         'as' => 'sub.rate'
     ]);
 
-    Route::post('/subscribe/{id}', [
+    Route::get('/subscribe/{post_id}', [
         'uses' => 'SubscriptionController@sub',
         'as' => 'sub.sub',
         function ($id = null) {

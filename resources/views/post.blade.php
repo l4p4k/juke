@@ -17,8 +17,15 @@
 
                     <div class="panel-body">
                         <div class="text-right">
-                            <a href=/subscribe/{{$data->post_id}} class='btn btn-primary'>
-                            <i class="fa fa-asterisk"></i> Subscribe</a>
+                            @if(!Auth::guest())
+                                @if($var['is_subbed'] == false)
+                                    <a href=/subscribe/{{$data->post_id}} class='btn btn-danger'>
+                                    <i class="fa fa-asterisk"></i> Subscribe</a>
+                                @else
+                                    <p class='btn btn-primary'>
+                                    <i class="fa fa-asterisk"></i> Subscribed</p>
+                                @endif
+                            @endif
                         </div>
                         <h1>{{$data->title}}</h1>
                         <p>{{$data->comment}}</p>

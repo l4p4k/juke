@@ -26,6 +26,12 @@ class Subscription extends Model
         return;
     }
 
+    public function subscribe($user_id, $post_id){
+        DB::table('subscription')->insert([
+            ['sub_id' => "", 'post_id' => $post_id, 'user_id' => $user_id, 'rating' => "0"]
+        ]);
+    }
+
     public function getRating($post_id){
         $query = DB::table('subscription')
             ->select('subscription.*')
