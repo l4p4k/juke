@@ -36,6 +36,7 @@ class Subscription extends Model
         $query = DB::table('subscription')
             ->select('subscription.*')
             ->where('subscription.post_id', '=', $post_id)
+            ->where('subscription.rating', '!=', "0")
             ->get();
         return $query;
     }

@@ -32,7 +32,8 @@ class SubscriptionController extends Controller
         $user_id = Auth::user()->id;
 
         if($sub->is_not_rated($post_id, $user_id) == null){
-            return "you already voted";
+            $data = "You've already voted for this post!";
+            return view('error')->withdata($data);
         }else{
             $sub->rate($post_id, $user_id, $rating);
         }
@@ -46,10 +47,13 @@ class SubscriptionController extends Controller
         $user_id = Auth::user()->id;
 
         if($sub->is_subbed($post_id, $user_id) != null){
-            return "you're already subscribed to this post";
+            $data = "You're already subscribed to this post!";
+            return view('error')->withdata($data);
         }else{
-            $insert = $sub->subscribe($user_id, $post_id);
-            var_dump($insert);
+            $sub->subscribe($user_id, $post_id);
+            
+            //takes you to the previous page
+            return Redirect::to(URL::previous());
         }
     }
 }
