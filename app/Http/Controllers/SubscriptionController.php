@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 use App\Subscription as Sub;
+use App\Post as Post;
 
 use App\Http\Requests;
 
@@ -50,7 +51,12 @@ class SubscriptionController extends Controller
             $data = "You're already subscribed to this post!";
             return view('error')->withdata($data);
         }else{
-            $sub->subscribe($user_id, $post_id);
+
+            $post = new Post();
+            $data = $post->showPost($post_id);
+            if($data->user_id != $user_id){
+                $sub->subscribe($user_id, $post_id);
+            }
             
             //takes you to the previous page
             return Redirect::to(URL::previous());
