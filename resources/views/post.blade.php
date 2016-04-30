@@ -29,6 +29,7 @@
                         </div>
                         <h1>{{$data->title}}</h1>
                         <p>{{$data->comment}}</p>
+                        <p><b>Type:</b>{{$post->job_type}}</p>
                         <p><b>Rating:</b>
                         @if($var['rating'] != null)
                             {{round($var['rating'], 2)}}/5

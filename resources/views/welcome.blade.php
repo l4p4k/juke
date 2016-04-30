@@ -13,11 +13,12 @@
                         <table class="table" style="width:100%">
                             <thead>
                                 <tr>
-                                <th class="col-md-6">Title</th> 
-                                <th class="col-md-3 text-right">Posted by</th>
+                                <th>Title</th> 
+                                <th>Type</th>
+                                <th class="text-right">Posted by</th>
                                 @if (!Auth::guest())
                                 @if(Auth::user()->admin)
-                                <th class="col-md-1">Delete</th>
+                                <th>Delete</th>
                                 @endif 
                                 @endif 
                                 </tr>
@@ -35,6 +36,7 @@
                                                 {{$post->title}}
                                             </a>
                                         </td>
+                                        <td>{{$post->job_type}}</td>
                                         <td class="text-right">
                                             <a href=/profile/{{$post->user_id}}>{{$post->fname}} {{$post->sname}}</a>
                                         </td>
