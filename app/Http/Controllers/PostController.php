@@ -22,7 +22,7 @@ class PostController extends Controller
      * @return void
      */
     public function __construct(){
-        $this->middleware('auth', ['except' => ['index','viewPost', 'simple_search']]);
+        $this->middleware('auth', ['except' => ['index','viewPost', 'simple_search', 'showPostJobTypes']]);
     }
 
      /**

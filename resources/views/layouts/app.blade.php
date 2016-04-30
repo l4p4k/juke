@@ -44,6 +44,7 @@
                     @if (!Auth::guest())
                     <li><a href="{{ url('/profile') }}">Profile</a></li>
                     <li><a href="{{ url('/messages') }}">My messages</a></li>
+                    <li><a href="{{ url('/subs') }}">Subscriptions</a></li>
                     <li><a href="{{ url('/create') }}">Create Post</a></li>
                     @endif
                 </ul>

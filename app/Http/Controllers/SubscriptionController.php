@@ -56,4 +56,12 @@ class SubscriptionController extends Controller
             return Redirect::to(URL::previous());
         }
     }
+
+    public function subs(){
+        $sub = new Sub();
+        $user_id = Auth::user()->id;
+        $data[0] = $sub->showSubsToMe($user_id);
+        $data[1] = $sub->showSubsByMe($user_id);
+        return view('subs')->withdata($data);
+    }
 }

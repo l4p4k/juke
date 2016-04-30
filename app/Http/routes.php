@@ -94,6 +94,11 @@ Route::group(['middleware' => 'web'], function () {
         'as' => 'messages.create'
     ]);
 
+    Route::get('/subs', [
+        'uses' => 'SubscriptionController@subs',
+        'as' => 'subs'
+    ]);
+
     Route::post('/editProfile', [
         'uses' => 'ProfileController@editProfile',
         'as' => 'profile.edit'

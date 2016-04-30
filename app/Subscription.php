@@ -26,6 +26,28 @@ class Subscription extends Model
         return;
     }
 
+    public function showSubsToMe($user_id){
+        $query = DB::table('subscription')
+            ->select('subscription.*', 'users.fname','users.sname', 'post.title', 'post.user_id AS postowner')
+            ->join('post', 'post.post_id', '=', 'subscription.post_id')
+            ->join('users', 'users.id', '=', 'subscription.user_id')
+            ->orderBy('subscription.sub_id', 'DESC')
+            ->where('post.user_id', '=', $user_id)
+            ->get();
+        return $query;
+    }
+
+    public function showSubsByMe($user_id){
+        $query = DB::table('subscription')
+            ->select('subscription.*', 'users.fname','users.sname', 'post.*')
+            ->join('post', 'post.post_id', '=', 'subscription.post_id')
+            ->join('users', 'users.id', '=', 'post.user_id')
+            ->orderBy('subscription.sub_id', 'DESC')
+            ->where('subscription.user_id', '=', $user_id)
+            ->get();
+        return $query;
+    }
+
     public function subscribe($user_id, $post_id){
         DB::table('subscription')->insert([
             ['sub_id' => "", 'post_id' => $post_id, 'user_id' => $user_id, 'rating' => "0"]
