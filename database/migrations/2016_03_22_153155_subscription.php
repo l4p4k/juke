@@ -16,6 +16,7 @@ class Subscription extends Migration
             $table->increments('sub_id')->unique();
             $table->integer('post_id');
             $table->integer('user_id');
+            $table->string('stage', 1);
             $table->double('rating', 15, 1);
         });
     }

@@ -38,12 +38,13 @@ class CreateController extends Controller
             'title' => $request->input('title'),
             'comment' => $request->input('comment'),
             'post_type' => $request->input('post_type'),
+            'job_type' => $request->input('job_type'),
         );
 
         // Build the validation rules.
         $rules = array(
-            'title'     => 'required|string|max:60|min:20',
-            'comment'     => 'required|string|max:255|min:50',
+            'title'     => 'required|string|max:60|min:10',
+            'comment'     => 'required|string|max:255|min:20',
         );
 
         // Create a new validator instance.
@@ -58,7 +59,7 @@ class CreateController extends Controller
         // If the data passes validation
         if ($validator->passes()) {
             $post = new Post();
-            $insert = $post->createPost($user_id, $formData['post_type'], $formData['title'], $formData['comment']);
+            $insert = $post->createPost($user_id, $formData['post_type'], $formData['title'], $formData['comment'], $formData['job_type']);
             $data = 'true';
             return view('create')->withdata("$data");
         }

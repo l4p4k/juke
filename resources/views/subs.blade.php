@@ -13,8 +13,9 @@
                             <table class="table" style="width:100%">
                                 <thead>
                                     <tr>
-                                    <th >Post Title</th> 
+                                    <th>Post Title</th> 
                                     <th class="text-right">Subscriber</th>
+                                    <th>Complete job<th>
                                     </tr>
                                 </thead> 
                                 <tbody>
@@ -26,13 +27,18 @@
                                             <td class="text-right">
                                                 <a href=/profile/{{$sub->user_id}}>{{$sub->fname}} {{$sub->sname}}</a>
                                             </td>
+                                            @if($sub->stage != 1)
+                                            <td>
+                                                <a href=/subComplete/{{$sub->post_id}} class='btn btn-danger'> Complete</a>
+                                            </td> 
+                                            @endif
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
                     @else
-                        You have not subscribed to any post yet
+                        None of your posts have subscribers
                     @endif
                 </div>
             </div>

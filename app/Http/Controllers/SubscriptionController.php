@@ -64,4 +64,16 @@ class SubscriptionController extends Controller
         $data[1] = $sub->showSubsByMe($user_id);
         return view('subs')->withdata($data);
     }
+
+    public function subComplete($post_id){
+        $sub = new Sub();
+        $user_id = Auth::user()->id;
+        
+        if($sub->subBelongs($user_id, $post_id)){
+            $sub->subComplete($post_id);
+            return Redirect::to('subs');
+        }else{
+            return Redirect::to('error');
+        }
+    }
 }

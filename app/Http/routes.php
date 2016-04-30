@@ -99,6 +99,12 @@ Route::group(['middleware' => 'web'], function () {
         'as' => 'subs'
     ]);
 
+    Route::get('/subComplete/{post_id}', [
+        'uses' => 'SubscriptionController@subComplete',
+        'as' => 'subComplete',
+        function ($post_id = null) {
+    }]);
+
     Route::post('/editProfile', [
         'uses' => 'ProfileController@editProfile',
         'as' => 'profile.edit'

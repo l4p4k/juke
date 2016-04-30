@@ -13,7 +13,6 @@ class Post extends Migration
     public function up()
     {
         Schema::create('post', function (Blueprint $table) {
-            //if doesnt work take out ->unique()
             $table->increments('post_id')->unique();
             $table->integer('user_id');
             $table->string('post_type', 1);

@@ -94,11 +94,11 @@
                                 @foreach($data[1] as $key => $post)
                                     <tr> 
                                         <td>
-                                            <b><a href=/post/{{$post->id}}>{{$post->title}}</a><b>
+                                            <b><a href=/post/{{$post->post_id}}>{{$post->title}}</a><b>
                                         </td>
                                         @if (!Auth::guest())
                                         <td>
-                                            <a href=/delete/{{$post->id}} class='btn btn-danger'>
+                                            <a href=/delete/{{$post->post_id}} class='btn btn-danger'>
                                             <i class="fa fa-trash-o fa-lg"></i> Delete</a>
                                         </td> 
                                         @endif 

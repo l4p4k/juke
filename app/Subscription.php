@@ -79,4 +79,35 @@ class Subscription extends Model
             ->get();
         return $query;
     }
+
+    public function subBelongs($user_id, $post_id){
+        $query = DB::table('subscription')
+            ->select('subscription.*', 'users.fname','users.sname', 'post.*')
+            ->join('post', 'post.post_id', '=', 'subscription.post_id')
+            ->join('users', 'users.id', '=', 'post.user_id')
+            ->orderBy('subscription.sub_id', 'DESC')
+            ->where('post.user_id', '=', $user_id)
+            ->where('subscription.post_id', '=', $post_id)
+            ->first();
+
+        if($query != null){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function subComplete($post_id){
+        $query = DB::table('subscription')
+            ->where('subscription.post_id', '=', $post_id)
+            ->first();
+
+            if($query->stage==null || $query->stage=="0"){
+                DB::table('subscription')
+                ->where('subscription.post_id', '=', $post_id)
+                ->update(array('stage' => "1"));
+            }
+
+        return;
+    }
 }

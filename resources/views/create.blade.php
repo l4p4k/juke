@@ -46,6 +46,24 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Job/Service type</label>
+                            <div class="col-md-1">
+                                <select name="job_type">
+                                    <option value="Transport">Transport</option>
+                                    <option value="House Maintenence">House Maintenence</option>
+                                    <option value="Tech Maintenence">Tech Maintenence</option>
+                                    <option value="Childcare">Childcare</option>
+                                    <option value="Food & Drink">Food & Drink</option>
+                                    <option value="Health & Beauty">Health & Beauty</option>
+                                    <option value="Tuition">Tuition</option>
+                                    <option value="Decoration">Decoration</option>
+                                    <option value="Guides">Guides</option>
+                                    <option value="Housing">Housing</option>
+                                </select>
+                            </div>
+                        </div>
+
                         <label class="col-md-4 control-label">Is this post a request or offering your skills?</label>
                         <div class="col-md-6">
                             <input type="radio" name="post_type" value="0" checked> Service request<br>
