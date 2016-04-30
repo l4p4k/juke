@@ -80,6 +80,14 @@ class Subscription extends Model
         return $query;
     }
 
+    public function is_job_complete($post_id){
+        $query = DB::table('subscription')
+            ->where('subscription.post_id', '=', $post_id)
+            ->where('subscription.stage', '=', "1")
+            ->first();
+        return $query;
+    }
+
     public function subBelongs($user_id, $post_id){
         $query = DB::table('subscription')
             ->select('subscription.*', 'users.fname','users.sname', 'post.*')

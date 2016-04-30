@@ -97,7 +97,7 @@ class PostController extends Controller
         if (!Auth::guest()){
             $user_id = Auth::user()->id;
 
-            if($sub->is_subbed($post_id, $user_id) == null){
+            if(($sub->is_subbed($post_id, $user_id)) == null){
                 $var['is_subbed'] = false;
             }else{
                 $var['is_subbed'] = true;
@@ -126,10 +126,13 @@ class PostController extends Controller
             $var['rating'] = 0;
         }
 
+        $jobComplete = $sub->is_job_complete($post_id);
+
 
         return view('post')
         ->withdata($data)
-        ->with('var', $var);
+        ->with('var', $var)
+        ->with('jobComplete', $jobComplete);
     }
 
     public function deletePost($id){

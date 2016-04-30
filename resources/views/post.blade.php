@@ -39,18 +39,20 @@
                         <b>Posted by:</b> <a href=/profile/{{$data->user_id}}>{{$data->fname}} {{$data->sname}}</a>
 
                         @if($var['is_subbed'])
-                            @if($var['is_rated'] != true)
-                                <form method="POST" action="{{ route('sub.rate') }}">
-                                    {!! csrf_field() !!}
-                                    <div class="text-right">
-                                        <p><br>Rate this post</p>
-                                        <input  type='hidden' name='rating' class='rating'/>
-                                        <input type="hidden" name="post_id" value="{{$data->post_id}}">
-                                        <input id='rate' type='submit' class='rate' value='rate' />
-                                    </div>
-                                </form>
-                            @else
-                                <p class="text-right"><i>*You have voted this post*</i></p>
+                            @if($jobComplete != null)
+                                @if($var['is_rated'] == false)
+                                    <form method="POST" action="{{ route('sub.rate') }}">
+                                        {!! csrf_field() !!}
+                                        <div class="text-right">
+                                            <p><br>Rate this post</p>
+                                            <input  type='hidden' name='rating' class='rating'/>
+                                            <input type="hidden" name="post_id" value="{{$data->post_id}}">
+                                            <input id='rate' type='submit' class='rate' value='rate' />
+                                        </div>
+                                    </form>
+                                @else
+                                    <p class="text-right"><i>*You have voted this post*</i></p>
+                                @endif
                             @endif
                         @endif
                     </div>
