@@ -18,8 +18,7 @@
                                     </tr>
                                 </thead> 
                                 <tbody>
-                                    @foreach($data as $data_post)
-                                    @foreach($data_post as $post)
+                                    @foreach($data as $post)
                                         <tr> 
                                             <td>
                                                 <b><a href=/post/{{$post->id}}>{{$post->title}}</a><b>
@@ -29,9 +28,10 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                    @endforeach
                                 </tbody>
                             </table>
+                            <!-- make links to go to other pages -->
+                            {{ $data->appends(Request::except('page'))->render() }}
                         </div>
                     @else
                     No posts were found with that keyword

@@ -26,7 +26,7 @@ class Post extends Model
 			->join('post', 'users.id', '=', 'post.user_id')
 			->select('users.id', 'users.fname', 'users.sname', 'post.*')
 			->orderBy('post.post_id', 'DESC')
-			->get();
+            ->paginate(10);
     	return $query;
     }
 
@@ -64,12 +64,13 @@ class Post extends Model
     }
 
     public function search($column, $criteria){
+        $num_on_page = 10;
         $query = DB::table('users')
             ->join('post', 'users.id', '=', 'post.user_id')
             ->select('users.id', 'users.fname', 'users.sname', 'post.*')
             ->orderBy('post.post_id', 'DESC')
             ->where('post.'.$column, 'like','%'.$criteria.'%')
-            ->get();
+        ->paginate($num_on_page);
 
         return $query;
     }

@@ -63,7 +63,8 @@ class create_table_seeds extends Seeder
             'user_id' => "1",
             'post_type' => "1",
             'title' => "A paragraph from wiki",
-            'comment' => "A paragraph (from the Ancient Greek παράγραφος paragraphos, \"to write beside\" or \"written beside\") is a self-contained unit of a discourse in writing dealing with a particular point or idea. A paragraph consists of one or more sentences."
+            'comment' => "A paragraph (from the Ancient Greek παράγραφος paragraphos, \"to write beside\" or \"written beside\") is a self-contained unit of a discourse in writing dealing with a particular point or idea. A paragraph consists of one or more sentences.",
+            'job_type' => $this->randomJobType()
         ]);
         $num_of_posts1 = 10;
         $num_of_posts2 = 10;
@@ -73,7 +74,8 @@ class create_table_seeds extends Seeder
                 'user_id' => $faker->numberBetween(1,$num_of_users),
                 'post_type' => $faker->numberBetween(0,1),
                 'title' => $faker->word,
-                'comment' => $faker->paragraph
+                'comment' => $faker->paragraph,
+                'job_type' => $this->randomJobType()
             ]);
         }
 
@@ -83,6 +85,7 @@ class create_table_seeds extends Seeder
                 'post_type' => $faker->numberBetween(0,1),
                 'title' => $faker->word,
                 'comment' => $faker->paragraph,
+                'job_type' => $this->randomJobType()
             ]);
         }
         
@@ -107,24 +110,41 @@ class create_table_seeds extends Seeder
             ]);
         }
 
-        // //ADDRESS --------------------------------------------------------------
-        // DB::table('address')->insert([
-        //     'house_no' => "24",
-        //     'street' => "Brearley Place",
-        //     'postcode' => "WF17 7ND",
-        //     'region' => "Batley",
-        //     'country' => "England"
-        // ]);
+    }
 
-        // foreach (range(1,15) as $index) {
-        //     DB::table('address')->insert([
-        //         'house_no' => $faker->buildingNumber(),
-        //         'street' => $faker->streetName(),
-        //         'postcode' => $faker->postcode(),
-        //         'region' => $faker->city(),
-        //         'country' => $faker->country()
-        //     ]);
-        // }
-
+    public function randomJobType(){
+        $randomNum = rand(1,10);
+        switch ($randomNum) {
+            case "1":
+                return "Transport";
+                break;
+            case "2":
+                return "House Maintenence";
+                break;
+            case "3":
+                return "Tech Maintenence";
+                break;
+            case "4":
+                return "Childcare";
+                break;
+            case "5":
+                return "Food & Drink";
+                break;
+            case "6":
+                return "Health & Beauty";
+                break;
+            case "7":
+                return "Tuition";
+                break;
+            case "8":
+                return "Decoration";
+                break;
+            case "9":
+                return "Guides";
+                break;
+            case "10":
+                return "Housing";
+                break;
+        }
     }
 }

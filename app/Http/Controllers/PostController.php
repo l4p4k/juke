@@ -46,7 +46,7 @@ class PostController extends Controller
         );
         // Build the validation rules.
         $rules = array(
-            'search'     => 'string|min:3'
+            'search'     => 'string|min:2'
         );
 
         // Create a new validator instance.
@@ -62,8 +62,9 @@ class PostController extends Controller
         }
         // If the data passes validation
         if ($validator->passes()) {
-            $data[0] = $post->search('title', $input_data['search']);
-            $data[1] = $post->search('comment', $input_data['search']);
+            $data = $post->search('title', $input_data['search']);
+            if(count($data) == 0)
+            $data = $post->search('comment', $input_data['search']);
             // var_dump($data);
             return view('results')->withdata($data);
         }

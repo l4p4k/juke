@@ -50,6 +50,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                    {{ $data->appends(Request::except('page'))->render() }}
                     </div>
                     @else
                     There are no posts

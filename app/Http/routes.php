@@ -99,7 +99,7 @@ Route::group(['middleware' => 'web'], function () {
         'as' => 'profile.edit'
     ]);
 
-    Route::post('/simple_search', [
+    Route::get('/simple_search', [
         'uses' => 'PostController@simple_search',
         'as' => 'simple_search'
     ]);
