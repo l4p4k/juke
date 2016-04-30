@@ -30,6 +30,16 @@ class Post extends Model
     	return $query;
     }
 
+    public function showPostJobTypes($jobType){
+        $query = DB::table('users')
+            ->join('post', 'users.id', '=', 'post.user_id')
+            ->select('users.fname', 'users.sname', 'post.*')
+            ->orderBy('post.post_id', 'DESC')
+            ->where('post.job_type','=',$jobType)
+            ->paginate(10);
+        return $query;
+    }
+
     public function showPost($id){
         $query = DB::table('users')
             ->join('post', 'users.id', '=', 'post.user_id')
@@ -63,15 +73,19 @@ class Post extends Model
         return $query;
     }
 
-    public function search($column, $criteria){
+    public function search($column, $criteria, $job_type, $post_type){
         $num_on_page = 10;
         $query = DB::table('users')
             ->join('post', 'users.id', '=', 'post.user_id')
-            ->select('users.id', 'users.fname', 'users.sname', 'post.*')
+            ->select('users.fname', 'users.sname', 'post.*')
             ->orderBy('post.post_id', 'DESC')
-            ->where('post.'.$column, 'like','%'.$criteria.'%')
-        ->paginate($num_on_page);
+            ->where('post.'.$column, 'like','%'.$criteria.'%');
+            if($job_type!="")
+                $query->where('post.job_type','=', $job_type);
+            if($post_type!="")
+                $query->where('post.post_type','=', $post_type);
+            $rows = $query->paginate($num_on_page);
 
-        return $query;
+        return $rows;
     }
 }

@@ -36,7 +36,7 @@
                                                 {{$post->title}}
                                             </a>
                                         </td>
-                                        <td>{{$post->job_type}}</td>
+                                        <td><a href="/showPostJobTypes/{{$post->job_type}}">{{$post->job_type}}</a></td>
                                         <td class="text-right">
                                             <a href=/profile/{{$post->user_id}}>{{$post->fname}} {{$post->sname}}</a>
                                         </td>

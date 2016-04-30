@@ -36,6 +36,13 @@ class PostController extends Controller
         return view('welcome')->withdata($data);
     }
 
+    public function showPostJobTypes($jobType){   
+        $post = new Post();
+        $data = $post->showPostJobTypes($jobType);
+        // return var_dump($data);
+        $title = $jobType;
+        return view('results')->withdata($data)->with('title',$title)->with('filter',"");
+    }
 
 
     public function simple_search(Request $request){
@@ -62,11 +69,21 @@ class PostController extends Controller
         }
         // If the data passes validation
         if ($validator->passes()) {
-            $data = $post->search('title', $input_data['search']);
+            if($request->has('job_type')|| $request->has('post_type')){
+                $job_type = $request->input('job_type');
+                $post_type = $request->input('post_type');
+            }else{
+                $job_type = "";
+                $post_type = "";
+            }
+            $data = $post->search('title', $input_data['search'], $job_type, $post_type);
             if(count($data) == 0)
-            $data = $post->search('comment', $input_data['search']);
+            $data = $post->search('comment', $input_data['search'], $job_type, $post_type);
             // var_dump($data);
-            return view('results')->withdata($data);
+            $title=$input_data['search'];
+            $filter = "all";
+            // return var_dump($data);
+            return view('results')->withdata($data)->with('title',$title)->with('filter',$filter);
         }
     }
 

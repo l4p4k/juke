@@ -104,6 +104,17 @@ Route::group(['middleware' => 'web'], function () {
         'as' => 'simple_search'
     ]);
 
+    Route::get('/extra_search', [
+        'uses' => 'PostController@simple_search',
+        'as' => 'extra_search'
+    ]);
+
+    Route::get('/showPostJobTypes/{jobType}', [
+        'uses' => 'PostController@showPostJobTypes',
+        'as' => 'showPostJobTypes',
+        function ($jobType = "None") {
+    }]);
+
     Route::get('/error', [
         'as' => 'error',
         function () {
