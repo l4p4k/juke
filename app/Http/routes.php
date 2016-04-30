@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Redirect;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,17 @@
 */
 
 Route::group(['middleware' => 'web'], function () {
+    //set xdebug level to 200 for a higher recursive method threshold
+    ini_set('xdebug.max_nesting_level', 200);
+
     Route::auth();
+
+    Route::get('/home', [
+        'uses' => 'PostController@index',
+        function () {
+        return Redirect::to('home');
+    }
+    ]);
 
     Route::get('/', [
         'uses' => 'PostController@index',
