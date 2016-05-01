@@ -5,7 +5,13 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">@if($data[0]->admin)Admin @else  @endif <b>{{$data[0]->fname}} {{$data[0]->sname}}</b>'s profile</div>
+                <div class="panel-heading">@if($data[0]->admin)Admin @else  @endif 
+                    <b>@if($data[0]->fname != null)
+                        {{$data[0]->fname}} {{$data[0]->sname}}
+                        @else
+                            {{$data[0]->email}}
+                        @endif
+                    </b>'s profile</div>
 
                 <div class="panel-body">
                     <p><b>Contact email: </b> <a href="mailto:{{$data[0]->email}}">{{$data[0]->email}} </a> </p>

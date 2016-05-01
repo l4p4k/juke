@@ -24,7 +24,7 @@ class Post extends Model
     public function showPosts(){
     	$query = DB::table('users')
 			->join('post', 'users.id', '=', 'post.user_id')
-			->select('users.id', 'users.fname', 'users.sname', 'post.*')
+			->select('users.id', 'users.fname', 'users.sname','users.email', 'post.*')
 			->orderBy('post.post_id', 'DESC')
             ->paginate(10);
     	return $query;
@@ -33,7 +33,7 @@ class Post extends Model
     public function showPostJobTypes($jobType){
         $query = DB::table('users')
             ->join('post', 'users.id', '=', 'post.user_id')
-            ->select('users.fname', 'users.sname', 'post.*')
+            ->select('users.fname', 'users.sname','users.email', 'post.*')
             ->orderBy('post.post_id', 'DESC')
             ->where('post.job_type','=',$jobType)
             ->paginate(10);
@@ -43,7 +43,7 @@ class Post extends Model
     public function showPost($id){
         $query = DB::table('users')
             ->join('post', 'users.id', '=', 'post.user_id')
-            ->select('users.id', 'users.fname', 'users.sname', 'post.*')
+            ->select('users.id', 'users.fname', 'users.sname','users.email', 'post.*')
             ->where('post.post_id', '=', $id)
             ->first();
         return $query;
@@ -52,7 +52,7 @@ class Post extends Model
     public function getUserPosts($id){
         $query = DB::table('users')
             ->join('post', 'users.id', '=', 'post.user_id')
-            ->select('users.id', 'users.fname', 'users.sname', 'post.*')
+            ->select('users.id', 'users.fname', 'users.sname','users.email', 'post.*')
             ->orderBy('post.post_id', 'DESC')
             ->where('users.id', '=', $id)
             ->get();
@@ -77,7 +77,7 @@ class Post extends Model
         $num_on_page = 10;
         $query = DB::table('users')
             ->join('post', 'users.id', '=', 'post.user_id')
-            ->select('users.fname', 'users.sname', 'post.*')
+            ->select('users.fname', 'users.sname','users.email', 'post.*')
             ->orderBy('post.post_id', 'DESC')
             ->where('post.'.$column, 'like','%'.$criteria.'%');
             if($job_type!="")

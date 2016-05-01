@@ -5,7 +5,12 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Welcome <b>{{$data[0]->fname}} {{$data[0]->sname}}!</b></div>
+                <div class="panel-heading">Welcome <b>@if($data[0]->fname != null)
+                        {{$data[0]->fname}} {{$data[0]->sname}}
+                        @else
+                            {{$data[0]->email}}
+                        @endif
+                        !</b></div>
 
                 <div class="panel-body">
                     
@@ -21,6 +26,50 @@
                         <p><b>Admin rank: </b> @if($data[0]->admin)True @else False @endif</p>
                         <p><b>User ID: </b> {{$data[0]->id}}</p>
                         <p><b>Email: </b> @if($data[0]->email != null) {{$data[0]->email}} @else --- @endif</p>
+
+                        <div class="form-group{{ $errors->has('fname') ? ' has-error' : '' }}">
+                            <label class="col-md-2 control-label">First name</label>
+                            <div class="col-md-4">
+                                <input type="fname" class="form-control" name="fname" value=
+                                @if(old('fname')!=null) 
+                                    {{ old('fname') }}
+                                @else 
+                                    @if($data[0]->fname != null)
+                                        {{$data[0]->fname}}
+                                    @else 
+                                        ''
+                                    @endif
+                                @endif>
+
+                                @if ($errors->has('fname'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('fname') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('sname') ? ' has-error' : '' }}">
+                            <label class="col-md-2 control-label">Second name</label>
+                            <div class="col-md-4">
+                                <input type="sname" class="form-control" name="sname" value=
+                                @if(old('sname')!=null) 
+                                    {{ old('sname') }}
+                                @else 
+                                    @if($data[0]->sname != null)
+                                        {{$data[0]->sname}}
+                                    @else 
+                                        ''
+                                    @endif
+                                @endif>
+
+                                @if ($errors->has('sname'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('sname') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
 
                         <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
                             <label class="col-md-2 control-label">Phone number</label>

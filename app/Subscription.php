@@ -28,7 +28,7 @@ class Subscription extends Model
 
     public function showSubsToMe($user_id){
         $query = DB::table('subscription')
-            ->select('subscription.*', 'users.fname','users.sname', 'post.title', 'post.user_id AS postowner')
+            ->select('subscription.*', 'users.fname','users.sname','users.email', 'post.title', 'post.user_id AS postowner')
             ->join('post', 'post.post_id', '=', 'subscription.post_id')
             ->join('users', 'users.id', '=', 'subscription.user_id')
             ->orderBy('subscription.sub_id', 'DESC')
@@ -39,7 +39,7 @@ class Subscription extends Model
 
     public function showSubsByMe($user_id){
         $query = DB::table('subscription')
-            ->select('subscription.*', 'users.fname','users.sname', 'post.*')
+            ->select('subscription.*', 'users.fname','users.sname','users.email', 'post.*')
             ->join('post', 'post.post_id', '=', 'subscription.post_id')
             ->join('users', 'users.id', '=', 'post.user_id')
             ->orderBy('subscription.sub_id', 'DESC')
@@ -90,7 +90,7 @@ class Subscription extends Model
 
     public function subBelongs($user_id, $post_id){
         $query = DB::table('subscription')
-            ->select('subscription.*', 'users.fname','users.sname', 'post.*')
+            ->select('subscription.*', 'users.fname','users.sname','users.email', 'post.*')
             ->join('post', 'post.post_id', '=', 'subscription.post_id')
             ->join('users', 'users.id', '=', 'post.user_id')
             ->orderBy('subscription.sub_id', 'DESC')

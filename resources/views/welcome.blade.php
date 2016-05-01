@@ -38,7 +38,13 @@
                                         </td>
                                         <td><a href="/showPostJobTypes/{{$post->job_type}}">{{$post->job_type}}</a></td>
                                         <td class="text-right">
-                                            <a href=/profile/{{$post->user_id}}>{{$post->fname}} {{$post->sname}}</a>
+                                            <a href=/profile/{{$post->user_id}}>
+                                                @if($post->fname != null)
+                                                {{$post->fname}} {{$post->sname}}
+                                                @else
+                                                    {{$post->email}}
+                                                @endif
+                                            </a>
                                         </td>
                                         @if (!Auth::guest())
                                         @if(Auth::user()->admin)

@@ -36,7 +36,12 @@
                             @else
                             Not rated
                             @endif</p>
-                        <b>Posted by:</b> <a href=/profile/{{$data->user_id}}>{{$data->fname}} {{$data->sname}}</a>
+                        <b>Posted by:</b> <a href=/profile/{{$data->user_id}}>
+                        @if($data->fname != null)
+                        {{$data->fname}} {{$data->sname}}
+                        @else
+                            {{$data->email}}
+                        @endif</a>
 
                         @if($var['is_subbed'])
                             @if($jobComplete != null)

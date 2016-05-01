@@ -28,7 +28,7 @@
                                                 <a href=/post/{{$message_for_me->post_id}}>{{$message_for_me->title}}</a>
                                             </td>
                                             <td class="text-right">
-                                                <a href=/profile/{{$message_for_me->user_id}}>{{$message_for_me->fname}} {{$message_for_me->sname}}</a>
+                                                <a href=/profile/{{$message_for_me->user_id}}>{{$message_for_me->email}}</a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -65,7 +65,7 @@
                                                 <a href=/post/{{$message_by_me->post_id}}>{{$message_by_me->title}}</a>
                                             </td>
                                             <td class="text-right">
-                                                <a href=/profile/{{$message_by_me->user_id}}>{{$message_by_me->fname}} {{$message_by_me->sname}}</a>
+                                                <a href=/profile/{{$message_by_me->user_id}}>{{$message_by_me->email}}</a>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -20,7 +20,7 @@ class Message extends Model{
 
     public function showMessagesToMe($id){
     	$query = DB::table('message')
-    		->select('message.*', 'users.fname','users.sname', 'post.*')
+    		->select('message.*', 'users.fname','users.sname','users.email', 'post.*')
 			->join('post', 'post.post_id', '=', 'message.post_id')
 			->join('users', 'users.id', '=', 'message.msg_user_id')
 			->orderBy('message.msg_id', 'DESC')
@@ -31,7 +31,7 @@ class Message extends Model{
 
     public function showMessagesByMe($id){
         $query = DB::table('message')
-            ->select('message.*', 'users.fname','users.sname', 'post.*')
+            ->select('message.*', 'users.fname','users.sname','users.email', 'post.*')
             ->join('post', 'post.post_id', '=', 'message.post_id')
             ->join('users', 'users.id', '=', 'post.user_id')
             ->orderBy('message.msg_id', 'DESC')

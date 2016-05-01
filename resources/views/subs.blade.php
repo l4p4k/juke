@@ -25,7 +25,7 @@
                                                 <a href=/post/{{$sub->post_id}}>{{$sub->title}}</a>
                                             </td>
                                             <td class="text-right">
-                                                <a href=/profile/{{$sub->user_id}}>{{$sub->fname}} {{$sub->sname}}</a>
+                                                <a href=/profile/{{$sub->user_id}}>{{$sub->email}}</a>
                                             </td>
                                             @if($sub->stage != 1)
                                             <td>
@@ -63,7 +63,7 @@
                                                 <a href=/post/{{$sub->post_id}}>{{$sub->title}}</a>
                                             </td>
                                             <td class="text-right">
-                                                <a href=/profile/{{$sub->user_id}}>{{$sub->fname}} {{$sub->sname}}</a>
+                                                <a href=/profile/{{$sub->user_id}}>{{$sub->email}}</a>
                                             </td>
                                         </tr>
                                     @endforeach

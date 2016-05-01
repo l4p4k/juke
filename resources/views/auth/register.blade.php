@@ -10,34 +10,6 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {!! csrf_field() !!}
 
-                        <div class="form-group{{ $errors->has('fname') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">First name</label>
-
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="fname" value="{{ old('fname') }}">
-
-                                @if ($errors->has('fname'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('fname') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('sname') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Last name</label>
-
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="sname" value="{{ old('sname') }}">
-
-                                @if ($errors->has('sname'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('sname') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label class="col-md-4 control-label">E-Mail Address</label>
 
@@ -83,7 +55,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-user"></i>Register
+                                    <i class="fa fa-btn fa-user"></i> Register
                                 </button>
                             </div>
                         </div>
