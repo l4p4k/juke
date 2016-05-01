@@ -28,7 +28,7 @@
                                                 <a href=/post/{{$message_for_me->post_id}}>{{$message_for_me->title}}</a>
                                             </td>
                                             <td class="text-right">
-                                                <a href=/profile/{{$message_for_me->user_id}}>{{$message_for_me->email}}</a>
+                                                <a href=/profile/{{$message_for_me->messager}}>{{$message_for_me->email}}</a>
                                             </td>
                                         </tr>
                                     @endforeach
