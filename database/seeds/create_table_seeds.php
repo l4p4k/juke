@@ -18,7 +18,7 @@ class create_table_seeds extends Seeder
             'sname'            => "Ravat",
             'phone'            => "",
             'email'            => "eby_146@hotmail.co.uk",
-            'password'         => bcrypt('poop123'),
+            'password'         => bcrypt('mypass123'),
             'house_no'          => "24",
             'postcode'          => "WF17 7ND",
             'admin'            => "1"
@@ -36,7 +36,7 @@ class create_table_seeds extends Seeder
                 'sname'        => $faker->lastname(),
                 'phone'        => "07".$faker->numberBetween(100000000, 999999999),
 	            'email'        => $name."@".$faker->domainName,
-	            'password'     => bcrypt('poop123'),
+	            'password'     => bcrypt('mypass123'),
                 'house_no'     => $faker->numberBetween(1,200),
                 'postcode'     => $faker->postcode(),
                 'admin'        => "0"
