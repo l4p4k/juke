@@ -140,7 +140,7 @@ class PostController extends Controller
 
         $postDetails = $post->showPost($id);
         if($postDetails != null){
-            if($postDetails->user_id == Auth::user()->id){
+            if(($postDetails->user_id == Auth::user()->id) || Auth::user()->admin){
                 $post = new Post();
                 $post->deletePost($id);
             }else{
